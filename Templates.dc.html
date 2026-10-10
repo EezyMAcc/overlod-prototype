@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Overlöd · Session templates</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F6F9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Overlöd">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+html,body{margin:0;height:100%;background:#F6F6F9;overscroll-behavior:none}
+body{touch-action:manipulation;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+x-dc{display:block;max-width:480px;margin:0 auto;height:100dvh}
+x-dc>:first-child{width:100%!important;height:100dvh!important}
+.proto-status{display:none!important}
+@view-transition{navigation:auto}
+@media (min-width:520px){x-dc{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 20px 60px rgba(30,30,80,.12)}}
+</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Inter+Tight:ital,wght@1,900&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(91,92,246,.45)}
+button:disabled{cursor:default;opacity:.35}
+input{-webkit-appearance:none;appearance:none;background:transparent;border:0;outline:none;padding:0;margin:0;font-family:'DM Sans',sans-serif;color:#17171F;width:100%;min-width:0}
+input::placeholder{color:#B4B4C4;opacity:1}
+.sky2{position:absolute;top:-60px;left:-60px;right:-60px;height:440px;z-index:0;filter:blur(24px);-webkit-mask-image:linear-gradient(#000 38%,transparent 90%);mask-image:linear-gradient(#000 38%,transparent 90%);pointer-events:none}
+.bl{position:absolute;border-radius:50%;will-change:transform}
+.b1{width:280px;height:240px;left:-10px;top:30px;background:radial-gradient(circle,rgba(170,160,255,.85),transparent 68%);animation:d1 17s ease-in-out infinite alternate}
+.b2{width:300px;height:240px;left:170px;top:0;background:radial-gradient(circle,rgba(255,200,170,.8),transparent 68%);animation:d2 21s ease-in-out infinite alternate}
+.b3{width:260px;height:240px;left:300px;top:150px;background:radial-gradient(circle,rgba(170,235,215,.75),transparent 68%);animation:d3 19s ease-in-out infinite alternate}
+.b4{width:260px;height:220px;left:90px;top:170px;background:radial-gradient(circle,rgba(255,180,220,.6),transparent 68%);animation:d4 23s ease-in-out infinite alternate}
+@keyframes d1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,30px) scale(1.15)}100%{transform:translate(20px,60px) scale(.92)}}
+@keyframes d2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,40px) scale(.9)}100%{transform:translate(-30px,-10px) scale(1.12)}}
+@keyframes d3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-50px) scale(1.18)}100%{transform:translate(-110px,10px) scale(.95)}}
+@keyframes d4{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.2)}100%{transform:translate(-50px,-20px) scale(.9)}}
+.oG{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:26px;line-height:1.4;letter-spacing:-.06em;display:inline-block;padding:0 4px;transform:skewX(-4deg) scaleX(1.06);color:#A4A4B6}
+.press{transition:transform .1s ease-out}
+.press:active{transform:scale(.97)}
+.card{transition:transform .1s ease-out}
+.card:active{transform:scale(.99)}
+@keyframes viewIn{from{opacity:0;transform:translateX(4%)}to{opacity:1;transform:none}}
+@keyframes viewBack{from{opacity:0;transform:translateX(-4%)}to{opacity:1;transform:none}}
+.vIn{animation:viewIn .28s cubic-bezier(0.23,1,0.32,1) both}
+.vBack{animation:viewBack .28s cubic-bezier(0.23,1,0.32,1) both}
+@keyframes rowIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.rIn{animation:rowIn .2s cubic-bezier(0.23,1,0.32,1) both}
+@keyframes tin{from{opacity:0;transform:translate(-50%,-10px) scale(.94);filter:blur(4px)}to{opacity:1;transform:translate(-50%,0) scale(1);filter:blur(0)}}
+@media (prefers-reduced-motion:reduce){.bl{animation:none}.vIn,.vBack,.rIn{animation:none}}
+</style>
+</helmet>
+<div style="width: 375px; height: 1100px; position: relative; overflow: hidden; background: #F6F6F9; display: flex; flex-direction: column; font-family: 'DM Sans', sans-serif; font-weight: 500; color: #17171F">
+<div style="flex: 1; min-height: 0; overflow-y: auto; position: relative; z-index: 0">
+<div class="sky2" aria-hidden="true"><div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div><div class="bl b4"></div></div>
+
+<div class="proto-status" style="position: relative; z-index: 1; display: flex; justify-content: space-between; padding: 14px 26px 0; font-size: 14px; font-weight: 700">
+<span>9:41</span>
+<span style="display: flex; gap: 5px" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18l0 -3M10 18l0 -6M14 18l0 -9M18 18l0 -12"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l.01 0M9.172 15.172a4 4 0 0 1 5.656 0M6.343 12.343a8 8 0 0 1 11.314 0M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2M7 10l0 4M10 10l0 4M13 10l0 4"></path></svg>
+</span>
+</div>
+
+<sc-if value="{{isList}}" hint-placeholder-val="{{true}}">
+<div class="{{listAnim}}" style="position: relative; z-index: 1">
+<div style="padding: 22px 20px 0">
+<h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05">Session templates</h1>
+<div style="margin-top: 6px; font-size: 13px; font-weight: 500; color: #55556A; line-height: 1.4">Load a template onto any day in Train to start with your lifts already in place.</div>
+</div>
+
+<sc-for list="{{tpls}}" as="t" hint-placeholder-count="3">
+<button class="card" onClick="{{t.edit}}" aria-label="{{t.aria}}" style="display: block; width: calc(100% - 28px); text-align: left; margin: 12px 14px 0; background: #FFFFFF; border-radius: 22px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.04)">
+<span style="display: flex; align-items: center; gap: 10px">
+<span style="flex: 1; min-width: 0">
+<span style="display: block; font-size: 18px; font-weight: 700; letter-spacing: -0.015em">{{t.name}}</span>
+<span style="display: block; font-size: 12px; font-weight: 500; color: #8A8A9C; margin-top: 2px">{{t.meta}}</span>
+</span>
+<span style="width: 34px; height: 34px; border-radius: 50%; background: #F2F2F7; display: flex; align-items: center; justify-content: center; color: #6E6E82; flex: none" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4M13.5 6.5l4 4"></path></svg>
+</span>
+</span>
+<span style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px">
+<sc-for list="{{t.chips}}" as="c" hint-placeholder-count="4">
+<span style="font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: #F2F1FA; color: #4A4A70">{{c.label}}</span>
+</sc-for>
+</span>
+</button>
+</sc-for>
+
+<button class="press" onClick="{{newTpl}}" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 12px 14px 24px; height: 54px; border-radius: 20px; border: 1.5px dashed #CFC9E6; color: #4A4A70; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14M5 12l14 0"></path></svg>New template</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isEdit}}" hint-placeholder-val="{{false}}">
+<div class="vIn" style="position: relative; z-index: 1">
+<div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 12px 12px 0">
+<button class="press" onClick="{{cancel}}" style="justify-self: start; display: inline-flex; align-items: center; gap: 2px; padding: 8px 10px 8px 4px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #4142D9">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6l6 6"></path></svg>Templates</button>
+<span style="font-size: 15px; font-weight: 700">{{editTitle}}</span>
+<button class="press" onClick="{{save}}" style="justify-self: end; padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 700; color: #2A2560; background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); box-shadow: 0 4px 12px rgba(130,110,220,.18), inset 0 1px 0 rgba(255,255,255,.8)">Save</button>
+</div>
+
+<div style="padding: 20px 14px 0">
+<label style="display: block">
+<span style="display: block; padding: 0 6px 8px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A9C; font-weight: 700">Template name</span>
+<span style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1.5px solid {{nameBorder}}; border-radius: 18px; padding: 0 14px; height: 52px; cursor: text; box-shadow: {{nameRing}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4A4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4M13.5 6.5l4 4"></path></svg>
+<input type="text" value="{{dName}}" onChange="{{onName}}" placeholder="e.g. Upper A" maxlength="30" autocomplete="off" style="font-size: 18px; font-weight: 700; letter-spacing: -0.015em; height: 24px; line-height: 24px">
+</span>
+</label>
+<sc-if value="{{nameErr}}" hint-placeholder-val="{{false}}"><div style="font-size: 13px; color: #C8362E; margin: 8px 6px 0">Give the template a name</div></sc-if>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 22px 20px 8px">
+<span style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A9C; font-weight: 700">Lifts, in order</span>
+<span style="font-size: 12px; font-weight: 600; color: #8A8A9C">{{liftCount}}</span>
+</div>
+<div style="margin: 0 14px; background: #FFFFFF; border-radius: 22px; box-shadow: 0 1px 2px rgba(0,0,0,.04); padding: 4px 0">
+<sc-if value="{{noLifts}}" hint-placeholder-val="{{false}}"><div style="padding: 18px 16px; font-size: 13px; font-weight: 500; color: {{emptyColor}}; line-height: 1.45">No lifts yet. Add them below in the order you train them.</div></sc-if>
+<sc-for list="{{lifts}}" as="l" hint-placeholder-count="4">
+<div class="{{l.anim}}" style="display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 16px; border-top: 1px solid {{l.border}}">
+<span style="width: 24px; flex: none; font-family: 'Space Mono', ui-monospace, monospace; font-size: 13px; font-weight: 700; color: #5B5CF6">{{l.n}}</span>
+<span style="flex: 1; min-width: 0; font-size: 16px; font-weight: 700; letter-spacing: -0.015em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{l.name}}</span>
+<button class="press" onClick="{{l.upFn}}" disabled="{{l.isFirst}}" aria-label="Move {{l.name}} up" style="width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6E6E82"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6 -6l6 6"></path></svg></button>
+<button class="press" onClick="{{l.downFn}}" disabled="{{l.isLast}}" aria-label="Move {{l.name}} down" style="width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6E6E82"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6"></path></svg></button>
+<button class="press" onClick="{{l.remove}}" aria-label="Remove {{l.name}}" style="width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #C8362E"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12M6 6l12 12"></path></svg></button>
+</div>
+</sc-for>
+</div>
+
+<div style="padding: 22px 20px 8px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A9C; font-weight: 700">Add a lift</div>
+<div style="margin: 0 14px">
+<label style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1.5px solid #E6E6EE; border-radius: 18px; padding: 0 14px; height: 48px; cursor: text">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4A4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0M21 21l-6 -6"></path></svg>
+<input type="text" value="{{q}}" onChange="{{onQ}}" onKeyDown="{{keyQ}}" placeholder="Search your exercises" aria-label="Search exercises to add" autocomplete="off" style="font-size: 16px; font-weight: 600; height: 22px; line-height: 22px">
+</label>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px">
+<sc-for list="{{sugg}}" as="s" hint-placeholder-count="6">
+<button class="press" onClick="{{s.add}}" style="display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; padding: 8px 13px 8px 10px; border-radius: 999px; background: {{s.bg}}; color: {{s.fg}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14M5 12l14 0"></path></svg>{{s.label}}</button>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{canDelete}}" hint-placeholder-val="{{true}}">
+<button class="press" onClick="{{del}}" style="display: block; margin: 28px auto 24px; padding: 12px 18px; border-radius: 12px; font-size: 15px; font-weight: 700; color: #C8362E">Delete template</button>
+</sc-if>
+<sc-if value="{{isNew}}" hint-placeholder-val="{{false}}"><div style="height: 28px"></div></sc-if>
+</div>
+</sc-if>
+</div>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}">
+<div role="status" aria-live="polite" style="position: absolute; left: 50%; top: 56px; z-index: 7; display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.92); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); border: 1px solid rgba(255,255,255,.7); font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px; white-space: nowrap; box-shadow: 0 8px 24px rgba(20,20,60,.16); transform: translate(-50%,0); animation: tin .3s cubic-bezier(0.23,1,0.32,1)">
+<span>{{toastMsg}}</span>
+<sc-if value="{{hasUndo}}" hint-placeholder-val="{{false}}"><button onClick="{{undo}}" style="font-size: 13px; font-weight: 700; color: #4142D9; background: #EEEEFF; padding: 5px 12px; border-radius: 999px; margin-right: -8px">Undo</button></sc-if>
+</div>
+</sc-if>
+
+<nav aria-label="Main" style="flex: none; position: relative; z-index: 2; display: flex; align-items: flex-end; background: rgba(255,255,255,.82); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-top: 1px solid #E6E6EE; padding: 8px 4px 26px; user-select: none">
+<sc-for list="{{nav.left}}" as="t" hint-placeholder-count="2">
+<a href="{{t.href}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a>
+</sc-for>
+<a href="Main.dc.html" aria-label="Train" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: #A4A4B6; font-weight: 500">
+<span style="height: 28px; display: flex; align-items: center; justify-content: center"><span class="oG" style="font-size: 23px; line-height: 38px; margin: -5px 0">Ö</span></span>
+Train</a>
+<sc-for list="{{nav.right}}" as="t" hint-placeholder-count="2">
+<a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":375,"height":1100}}'>
+function nbRR(x, y, w, h, r) {
+  return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r + 'h' + (-(w - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + (-r) + 'v' + (-(h - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (-r) + 'z';
+}
+function nbC(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+function nbNav(active) {
+  var none = 'M0 0';
+  var bars = nbRR(4, 12, 4, 8, 1) + nbRR(10, 4, 4, 16, 1) + nbRR(16, 8, 4, 12, 1);
+  var arrow = 'M7.5 14.5l3 -3l2 2l4 -4.5M13.5 9h3v3';
+  var boxes = nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5), lines = 'M13 5h8M13 9h5M13 15h8M13 19h5';
+  var sl = 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0', knobs = nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2);
+  var defs = [
+    {id: 'stats', label: 'Stats', href: 'Stats.dc.html', o: bars, f: bars},
+    {id: 'progress', label: 'Progress', href: 'Achievements.dc.html', o: nbC(12, 12, 9) + arrow, f: nbC(12, 12, 9), k: arrow},
+    {id: 'exercises', label: 'Sessions', href: 'Templates.dc.html', o: boxes + lines, f: boxes, s: lines},
+    {id: 'settings', label: 'Settings', href: '#', o: sl + knobs, f: knobs, s: sl}
+  ];
+  var mk = function (d) {
+    var on = d.id === active;
+    return {label: d.label, href: d.href, cur: on ? 'page' : 'false', o: d.o, f: d.f || none, s: d.s || none, k: d.k || none,
+      onOp: on ? 1 : 0, offOp: on ? 0 : 1, color: on ? '#17171F' : '#A4A4B6', weight: on ? 700 : 500};
+  };
+  return {left: [mk(defs[1]), mk(defs[0])], right: [mk(defs[2]), mk(defs[3])]};
+}
+var TP_LIB = ['Back squat', 'Incline dumbbell press', 'Romanian deadlift', 'Cable fly', 'Lat pulldown', 'Overhead press', 'Lateral raise', 'Tricep pushdown', 'Seated cable row', 'Leg press', 'Bicep curl', 'Hip thrust', 'Dips', 'Calf raise'];
+function tpInit() {
+  return {
+    view: 'list', back: false, editId: null, draft: null, nameErr: false, liftErr: false, q: '', toast: null, justAdded: null, nextId: 4,
+    tpls: [
+      {id: 1, name: 'Push day', lifts: ['Incline dumbbell press', 'Overhead press', 'Cable fly', 'Lateral raise', 'Tricep pushdown'], used: 14},
+      {id: 2, name: 'Pull day', lifts: ['Lat pulldown', 'Seated cable row', 'Bicep curl'], used: 12},
+      {id: 3, name: 'Legs', lifts: ['Back squat', 'Romanian deadlift', 'Leg press', 'Calf raise'], used: 13}
+    ]
+  };
+}
+
+class Component extends DCLogic {
+  componentWillUnmount() { clearTimeout(this.tt); }
+  toast(msg, undo) {
+    var self = this, m = this.m;
+    m.toast = {msg: msg, undo: undo || null};
+    clearTimeout(this.tt);
+    this.tt = setTimeout(function () { m.toast = null; self.forceUpdate(); }, undo ? 4000 : 2000);
+  }
+  renderVals() {
+    var self = this;
+    var m = this.m || (this.m = tpInit());
+    var up = function () { self.forceUpdate(); };
+    var open = function (t) {
+      m.view = 'edit'; m.editId = t ? t.id : null; m.nameErr = false; m.liftErr = false; m.q = ''; m.justAdded = null;
+      m.draft = t ? {name: t.name, lifts: t.lifts.slice()} : {name: '', lifts: []};
+      up();
+    };
+    var close = function () { m.view = 'list'; m.back = true; m.draft = null; up(); };
+    var d = m.draft || {name: '', lifts: []};
+    var addLift = function (n) { n = (n || '').trim(); if (!n || d.lifts.indexOf(n) > -1) return; d.lifts.push(n); m.justAdded = n; m.liftErr = false; m.q = ''; up(); };
+    var q = m.q.trim().toLowerCase();
+    var matches = TP_LIB.filter(function (n) { return d.lifts.indexOf(n) < 0 && (!q || n.toLowerCase().indexOf(q) > -1); }).slice(0, 8);
+    var sugg = matches.map(function (n) { return {label: n, bg: '#F2F1FA', fg: '#4A4A70', add: function () { addLift(n); }}; });
+    var exact = TP_LIB.some(function (n) { return n.toLowerCase() === q; }) || d.lifts.some(function (n) { return n.toLowerCase() === q; });
+    if (q && !exact) {
+      var typed = m.q.trim();
+      sugg.push({label: 'Create “' + typed + '”', bg: 'linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%)', fg: '#2A2560', add: function () { addLift(typed); }});
+    }
+    return {
+      isList: m.view === 'list', isEdit: m.view === 'edit', listAnim: m.back ? 'vBack' : '',
+      tpls: m.tpls.map(function (t) {
+        var chips = t.lifts.slice(0, 4).map(function (l) { return {label: l}; });
+        if (t.lifts.length > 4) chips.push({label: '+' + (t.lifts.length - 4) + ' more'});
+        return {name: t.name, meta: t.lifts.length + (t.lifts.length === 1 ? ' lift' : ' lifts') + ' · used ' + t.used + ' times', chips: chips,
+          aria: 'Edit ' + t.name + ', ' + t.lifts.length + ' lifts', edit: function () { open(t); }};
+      }),
+      newTpl: function () { open(null); },
+      editTitle: m.editId ? 'Edit template' : 'New template',
+      isNew: !m.editId, canDelete: !!m.editId,
+      dName: d.name,
+      onName: function (ev) { d.name = ev.target.value; m.nameErr = false; up(); },
+      nameErr: m.nameErr,
+      nameBorder: m.nameErr ? '#E5484D' : '#E6E6EE', nameRing: m.nameErr ? '0 0 0 4px rgba(229,72,77,.10)' : 'none',
+      liftCount: d.lifts.length + (d.lifts.length === 1 ? ' lift' : ' lifts'),
+      noLifts: !d.lifts.length, emptyColor: m.liftErr ? '#C8362E' : '#8A8A9C',
+      lifts: d.lifts.map(function (n, i) {
+        var L = d.lifts.length - 1;
+        return {n: String(i + 1).padStart(2, '0'), name: n, border: i === 0 ? 'transparent' : '#F3F3F7', anim: n === m.justAdded ? 'rIn' : '',
+          isFirst: i === 0, isLast: i === L,
+          upFn: function () { if (i > 0) { d.lifts.splice(i - 1, 0, d.lifts.splice(i, 1)[0]); m.justAdded = null; up(); } },
+          downFn: function () { if (i < L) { d.lifts.splice(i + 1, 0, d.lifts.splice(i, 1)[0]); m.justAdded = null; up(); } },
+          remove: function () { d.lifts.splice(i, 1); m.justAdded = null; up(); }};
+      }),
+      q: m.q,
+      onQ: function (ev) { m.q = ev.target.value; up(); },
+      keyQ: function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); if (matches.length && q) addLift(matches[0]); else addLift(m.q); } },
+      sugg: sugg,
+      cancel: close,
+      save: function () {
+        var name = d.name.trim();
+        m.nameErr = !name; m.liftErr = !d.lifts.length;
+        if (m.nameErr || m.liftErr) { up(); return; }
+        if (m.editId) { var t = m.tpls.filter(function (x) { return x.id === m.editId; })[0]; t.name = name; t.lifts = d.lifts.slice(); }
+        else m.tpls.push({id: m.nextId++, name: name, lifts: d.lifts.slice(), used: 0});
+        self.toast(name + ' saved');
+        close();
+      },
+      del: function () {
+        var i = -1, t = null;
+        m.tpls.forEach(function (x, k) { if (x.id === m.editId) { i = k; t = x; } });
+        if (i > -1) m.tpls.splice(i, 1);
+        self.toast((t ? t.name : 'Template') + ' deleted', function () { m.tpls.splice(i, 0, t); });
+        close();
+      },
+      hasToast: !!m.toast, toastMsg: m.toast ? m.toast.msg : '', hasUndo: !!(m.toast && m.toast.undo),
+      undo: function () { if (m.toast && m.toast.undo) m.toast.undo(); m.toast = null; up(); },
+      nav: nbNav('exercises')
+    };
+  }
+}
+</script>
+</body>
+</html>

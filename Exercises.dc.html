@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Overlöd · All exercises</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F6F9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Overlöd">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+html,body{margin:0;height:100%;background:#F6F6F9;overscroll-behavior:none}
+body{touch-action:manipulation;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+x-dc{display:block;max-width:480px;margin:0 auto;height:100dvh}
+x-dc>:first-child{width:100%!important;height:100dvh!important}
+.proto-status{display:none!important}
+@view-transition{navigation:auto}
+@media (min-width:520px){x-dc{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 20px 60px rgba(30,30,80,.12)}}
+</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Inter+Tight:ital,wght@1,900&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(91,92,246,.45)}
+.sky2{position:absolute;top:-60px;left:-60px;right:-60px;height:440px;z-index:0;filter:blur(24px);-webkit-mask-image:linear-gradient(#000 38%,transparent 90%);mask-image:linear-gradient(#000 38%,transparent 90%);pointer-events:none}
+.bl{position:absolute;border-radius:50%;will-change:transform}
+.b1{width:280px;height:240px;left:-10px;top:30px;background:radial-gradient(circle,rgba(170,160,255,.85),transparent 68%);animation:d1 17s ease-in-out infinite alternate}
+.b2{width:300px;height:240px;left:170px;top:0;background:radial-gradient(circle,rgba(255,200,170,.8),transparent 68%);animation:d2 21s ease-in-out infinite alternate}
+.b3{width:260px;height:240px;left:300px;top:150px;background:radial-gradient(circle,rgba(170,235,215,.75),transparent 68%);animation:d3 19s ease-in-out infinite alternate}
+.b4{width:260px;height:220px;left:90px;top:170px;background:radial-gradient(circle,rgba(255,180,220,.6),transparent 68%);animation:d4 23s ease-in-out infinite alternate}
+@keyframes d1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,30px) scale(1.15)}100%{transform:translate(20px,60px) scale(.92)}}
+@keyframes d2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,40px) scale(.9)}100%{transform:translate(-30px,-10px) scale(1.12)}}
+@keyframes d3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-50px) scale(1.18)}100%{transform:translate(-110px,10px) scale(.95)}}
+@keyframes d4{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.2)}100%{transform:translate(-50px,-20px) scale(.9)}}
+.oG{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:26px;line-height:1.4;letter-spacing:-.06em;display:inline-block;padding:0 4px;transform:skewX(-4deg) scaleX(1.06);color:#A4A4B6}
+.oG.on{background:linear-gradient(100deg,#15123A 0%,#2E2A8C 30%,#4F50EE 68%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.row{transition:background .12s ease-out,transform .1s ease-out}
+.row:active{background:#F6F6FA;transform:scale(.99)}
+.press{transition:transform .1s ease-out}
+.press:active{transform:scale(.97)}
+@keyframes rowIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rowIn{animation:rowIn .3s cubic-bezier(0.23,1,0.32,1) both}
+@media (prefers-reduced-motion:reduce){.bl{animation:none}.rowIn{animation:none}}
+</style>
+</helmet>
+<div style="width: 375px; height: 1100px; position: relative; overflow: hidden; background: #F6F6F9; display: flex; flex-direction: column; font-family: 'DM Sans', sans-serif; font-weight: 500; color: #17171F">
+<div style="flex: 1; min-height: 0; overflow-y: auto; position: relative; z-index: 0">
+<div class="sky2" aria-hidden="true"><div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div><div class="bl b4"></div></div>
+
+<header style="position: relative; z-index: 1; padding-bottom: 6px; user-select: none">
+<div class="proto-status" style="display: flex; justify-content: space-between; padding: 14px 26px 0; font-size: 14px; font-weight: 700">
+<span>9:41</span>
+<span style="display: flex; gap: 5px" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18l0 -3M10 18l0 -6M14 18l0 -9M18 18l0 -12"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l.01 0M9.172 15.172a4 4 0 0 1 5.656 0M6.343 12.343a8 8 0 0 1 11.314 0M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2M7 10l0 4M10 10l0 4M13 10l0 4"></path></svg>
+</span>
+</div>
+<div style="padding: 12px 12px 0">
+<a href="Stats.dc.html" class="press" style="display: inline-flex; align-items: center; gap: 2px; padding: 8px 10px 8px 4px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #4142D9">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6l6 6"></path></svg>Stats</a>
+</div>
+<div style="padding: 6px 20px 0">
+<h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1">All exercises</h1>
+<div style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #6A6890; font-weight: 700">{{countCap}}</div>
+</div>
+</header>
+
+<div style="position: relative; z-index: 1">
+<div style="padding: 18px 20px 10px; font-size: 12px; font-weight: 500; color: #8A8A9C">Ranked by sessions logged, last 90 days</div>
+
+<div style="margin: 0 14px; background: #FFFFFF; border-radius: 22px; box-shadow: 0 1px 2px rgba(0,0,0,.04); padding: 4px 0">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+<a href="ExerciseDetail.dc.html?exercise={{r.name}}" class="row {{r.anim}}" aria-label="{{r.aria}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-top: 1px solid {{r.border}}; border-radius: 14px; animation-delay: {{r.delay}}ms">
+<span style="width: 28px; flex: none; font-family: 'Space Mono', ui-monospace, monospace; font-size: 15px; font-weight: 700; color: {{r.rankColor}}">{{r.rank}}</span>
+<span style="flex: 1; min-width: 0">
+<span style="display: block; font-size: 16px; font-weight: 700; letter-spacing: -0.015em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span>
+<span style="display: block; font-size: 12px; font-weight: 500; color: #8A8A9C; margin-top: 2px; font-variant-numeric: tabular-nums">{{r.meta}}</span>
+</span>
+<svg width="52" height="24" viewBox="0 0 52 24" aria-hidden="true" style="flex: none"><path d="{{r.spark}}" fill="none" stroke="#C3C3D2" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><circle cx="{{r.cx}}" cy="{{r.cy}}" r="3.5" fill="#5B5CF6" stroke="#FFFFFF" stroke-width="2"></circle></svg>
+<span style="width: 62px; flex: none; text-align: right">
+<span style="display: block; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums">{{r.top}}</span>
+<span style="display: block; font-size: 11px; font-weight: 500; color: #8A8A9C; margin-top: 1px">top set</span>
+</span>
+</a>
+</sc-for>
+</div>
+
+<div style="height: 24px"></div>
+</div>
+</div>
+
+<nav aria-label="Main" style="flex: none; position: relative; z-index: 2; display: flex; align-items: flex-end; background: rgba(255,255,255,.82); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-top: 1px solid #E6E6EE; padding: 8px 4px 26px; user-select: none">
+<sc-for list="{{nav.left}}" as="t" hint-placeholder-count="2">
+<sc-if value="{{t.isLink}}" hint-placeholder-val="{{true}}"><a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a></sc-if>
+<sc-if value="{{t.isBtn}}" hint-placeholder-val="{{false}}"><button style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</button></sc-if>
+</sc-for>
+<a href="Main.dc.html" aria-label="Train" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: #A4A4B6; font-weight: 500">
+<span style="height: 28px; display: flex; align-items: center; justify-content: center"><span class="oG" style="font-size: 23px; line-height: 38px; margin: -5px 0">Ö</span></span>
+Train</a>
+<sc-for list="{{nav.right}}" as="t" hint-placeholder-count="2">
+<sc-if value="{{t.isLink}}" hint-placeholder-val="{{true}}"><a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a></sc-if>
+<sc-if value="{{t.isBtn}}" hint-placeholder-val="{{false}}"><button style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</button></sc-if>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":375,"height":1100}}'>
+function nbRR(x, y, w, h, r) {
+  return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r + 'h' + (-(w - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + (-r) + 'v' + (-(h - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (-r) + 'z';
+}
+function nbC(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+function nbNav(active) {
+  var none = 'M0 0';
+  var bars = nbRR(4, 12, 4, 8, 1) + nbRR(10, 4, 4, 16, 1) + nbRR(16, 8, 4, 12, 1);
+  var arrow = 'M7.5 14.5l3 -3l2 2l4 -4.5M13.5 9h3v3';
+  var boxes = nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5), lines = 'M13 5h8M13 9h5M13 15h8M13 19h5';
+  var sl = 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0', knobs = nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2);
+  var defs = [
+    {id: 'stats', label: 'Stats', href: 'Stats.dc.html', o: bars, f: bars},
+    {id: 'progress', label: 'Progress', href: 'Achievements.dc.html', o: nbC(12, 12, 9) + arrow, f: nbC(12, 12, 9), k: arrow},
+    {id: 'exercises', label: 'Sessions', href: 'Templates.dc.html', o: boxes + lines, f: boxes, s: lines},
+    {id: 'settings', label: 'Settings', o: sl + knobs, f: knobs, s: sl}
+  ];
+  var mk = function (d) {
+    var on = d.id === active;
+    return {label: d.label, href: d.href || '', isLink: !!d.href, isBtn: !d.href, cur: on ? 'page' : 'false',
+      o: d.o, f: d.f || none, s: d.s || none, k: d.k || none, onOp: on ? 1 : 0, offOp: on ? 0 : 1,
+      color: on ? '#17171F' : '#A4A4B6', weight: on ? 700 : 500};
+  };
+  return {left: [mk(defs[1]), mk(defs[0])], right: [mk(defs[2]), mk(defs[3])]};
+}
+var EX_LIST = [
+  ['Back squat', 'Legs', 21, '105 kg', 3, 92.5, 105],
+  ['Incline dumbbell press', 'Chest', 18, '36 kg', 1, 24, 36],
+  ['Romanian deadlift', 'Hamstrings', 18, '120 kg', 3, 95, 120],
+  ['Cable fly', 'Chest', 18, '17.5 kg', 1, 12.5, 17.5],
+  ['Lat pulldown', 'Back', 17, '62.5 kg', 5, 50, 62.5],
+  ['Overhead press', 'Shoulders', 15, '50 kg', 8, 42.5, 50],
+  ['Lateral raise', 'Shoulders', 14, '12 kg', 1, 8, 12],
+  ['Tricep pushdown', 'Arms', 13, '35 kg', 8, 25, 35],
+  ['Seated cable row', 'Back', 12, '70 kg', 5, 57.5, 70],
+  ['Leg press', 'Legs', 11, '220 kg', 3, 170, 220],
+  ['Bicep curl', 'Arms', 10, '16 kg', 5, 12, 16],
+  ['Hip thrust', 'Glutes', 9, '140 kg', 10, 110, 140],
+  ['Dips', 'Chest', 7, '+20 kg', 15, 0, 20],
+  ['Calf raise', 'Legs', 6, '80 kg', 17, 60, 80]
+];
+function exSpark(i, a, b) {
+  var seed = 7 + i * 13, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  var pts = [];
+  for (var k = 0; k < 10; k++) pts.push(a + (b - a) * (k / 9) + (rnd() - 0.5) * (b - a) * 0.18);
+  pts[9] = b;
+  var mn = Math.min.apply(null, pts), mx = Math.max.apply(null, pts);
+  var sx = function (k) { return 2 + k * 48 / 9; }, sy = function (v) { return 20 - (v - mn) / (mx - mn || 1) * 16; };
+  return {d: pts.map(function (v, k) { return (k ? 'L' : 'M') + sx(k).toFixed(1) + ',' + sy(v).toFixed(1); }).join(''), cx: sx(9).toFixed(1), cy: sy(pts[9]).toFixed(1)};
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var m = this.m || (this.m = {all: false});
+    var shown = EX_LIST;
+    return {
+      countCap: EX_LIST.length + ' exercises logged',
+      rows: shown.map(function (e, i) {
+        var sp = exSpark(i, e[5], e[6]);
+        var last = e[4] === 1 ? 'yesterday' : e[4] + ' days ago';
+        return {rank: String(i + 1).padStart(2, '0'), rankColor: i < 5 ? '#5B5CF6' : '#B4B4C4', name: e[0],
+          meta: e[2] + ' sessions · ' + last, top: e[3], spark: sp.d, cx: sp.cx, cy: sp.cy,
+          border: i === 0 ? 'transparent' : '#F3F3F7', anim: '', delay: 0,
+          aria: e[0] + ', ' + e[2] + ' sessions, top set ' + e[3] + ', last trained ' + last};
+      }),
+      allStr: String(m.all), allLabel: m.all ? 'Show top 5' : 'See all ' + EX_LIST.length + ' exercises', chev: m.all ? 180 : 0,
+      toggleAll: function () { m.all = !m.all; self.forceUpdate(); },
+      nav: nbNav('stats')
+    };
+  }
+}
+</script>
+</body>
+</html>

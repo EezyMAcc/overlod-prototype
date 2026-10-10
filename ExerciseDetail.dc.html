@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Overlöd · Exercise detail</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F6F9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Overlöd">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+html,body{margin:0;height:100%;background:#F6F6F9;overscroll-behavior:none}
+body{touch-action:manipulation;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+x-dc{display:block;max-width:480px;margin:0 auto;height:100dvh}
+x-dc>:first-child{width:100%!important;height:100dvh!important}
+.proto-status{display:none!important}
+@view-transition{navigation:auto}
+@media (min-width:520px){x-dc{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 20px 60px rgba(30,30,80,.12)}}
+</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Inter+Tight:ital,wght@1,900&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}a:hover{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(91,92,246,.45)}
+.sky2{position:absolute;top:-60px;left:-60px;right:-60px;height:440px;z-index:0;filter:blur(24px);-webkit-mask-image:linear-gradient(#000 38%,transparent 90%);mask-image:linear-gradient(#000 38%,transparent 90%);pointer-events:none}
+.bl{position:absolute;border-radius:50%;will-change:transform}
+.b1{width:280px;height:240px;left:-10px;top:30px;background:radial-gradient(circle,rgba(170,160,255,.85),transparent 68%);animation:d1 17s ease-in-out infinite alternate}
+.b2{width:300px;height:240px;left:170px;top:0;background:radial-gradient(circle,rgba(255,200,170,.8),transparent 68%);animation:d2 21s ease-in-out infinite alternate}
+.b3{width:260px;height:240px;left:300px;top:150px;background:radial-gradient(circle,rgba(170,235,215,.75),transparent 68%);animation:d3 19s ease-in-out infinite alternate}
+.b4{width:260px;height:220px;left:90px;top:170px;background:radial-gradient(circle,rgba(255,180,220,.6),transparent 68%);animation:d4 23s ease-in-out infinite alternate}
+@keyframes d1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,30px) scale(1.15)}100%{transform:translate(20px,60px) scale(.92)}}
+@keyframes d2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,40px) scale(.9)}100%{transform:translate(-30px,-10px) scale(1.12)}}
+@keyframes d3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-50px) scale(1.18)}100%{transform:translate(-110px,10px) scale(.95)}}
+@keyframes d4{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.2)}100%{transform:translate(-50px,-20px) scale(.9)}}
+.oG{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:26px;line-height:1.4;letter-spacing:-.06em;display:inline-block;padding:0 4px;transform:skewX(-4deg) scaleX(1.06);color:#A4A4B6}
+.slideIx{transition:transform 250ms cubic-bezier(0.77,0,0.175,1),clip-path 250ms cubic-bezier(0.77,0,0.175,1)}
+.press{transition:transform .1s ease-out}
+.press:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.bl{animation:none}.slideIx{transition:none}}
+</style>
+</helmet>
+<div style="width: 375px; height: 1900px; position: relative; overflow: hidden; background: #F6F6F9; display: flex; flex-direction: column; font-family: 'DM Sans', sans-serif; font-weight: 500; color: #17171F">
+<div style="flex: 1; min-height: 0; overflow-y: auto; position: relative; z-index: 0">
+<div class="sky2" aria-hidden="true"><div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div><div class="bl b4"></div></div>
+
+<header style="position: relative; z-index: 1; padding-bottom: 4px; user-select: none">
+<div class="proto-status" style="display: flex; justify-content: space-between; padding: 14px 26px 0; font-size: 14px; font-weight: 700">
+<span>9:41</span>
+<span style="display: flex; gap: 5px" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18l0 -3M10 18l0 -6M14 18l0 -9M18 18l0 -12"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l.01 0M9.172 15.172a4 4 0 0 1 5.656 0M6.343 12.343a8 8 0 0 1 11.314 0M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2M7 10l0 4M10 10l0 4M13 10l0 4"></path></svg>
+</span>
+</div>
+<div style="padding: 12px 12px 0">
+<a href="Stats.dc.html" class="press" style="display: inline-flex; align-items: center; gap: 2px; padding: 8px 10px 8px 4px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #4142D9">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6l6 6"></path></svg>Stats</a>
+</div>
+<div style="padding: 6px 20px 0">
+<h1 style="margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1">{{ex.name}}</h1>
+<div style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #6A6890; font-weight: 700">{{ex.cap}}</div>
+</div>
+</header>
+
+<div style="position: relative; z-index: 1">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 16px 14px 0">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="4">
+<div style="background: #FFFFFF; border-radius: 20px; padding: 14px; box-shadow: 0 1px 2px rgba(0,0,0,.03)">
+<div style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A9C; font-weight: 700">{{t.cap}}</div>
+<div style="display: flex; align-items: baseline; gap: 4px; margin-top: 6px"><span style="font-family: 'Space Mono', ui-monospace, monospace; font-size: 26px; font-weight: 700; letter-spacing: -0.06em; line-height: 1">{{t.v}}</span><span style="font-size: 13px; font-weight: 600; color: #55556A">{{t.unit}}</span></div>
+<div style="font-size: 12px; font-weight: 500; color: #8A8A9C; margin-top: 6px">{{t.sub}}</div>
+</div>
+</sc-for>
+</div>
+
+<div role="tablist" aria-label="Time range" style="position: relative; display: flex; gap: 6px; margin: 20px 14px 0; padding: 4px; background: #EFEEF6; border-radius: 999px">
+<span aria-hidden="true" class="slideIx" style="position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 20px) / 3); border-radius: 999px; background: #FFFFFF; box-shadow: 0 2px 8px rgba(30,30,80,.1); transform: translateX(calc({{rgI}} * (100% + 6px)))"></span>
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="3">
+<button role="tab" aria-selected="{{r.selStr}}" aria-label="{{r.aria}}" onClick="{{r.pick}}" style="position: relative; flex: 1; text-align: center; font-size: 14px; font-weight: 700; padding: 8px 0; border-radius: 999px; color: #6E6E86">{{r.label}}</button>
+</sc-for>
+<div aria-hidden="true" class="slideIx" style="position: absolute; inset: 4px; display: flex; gap: 6px; pointer-events: none; background: #FFFFFF; clip-path: inset(0 calc((100% - 12px) / 3 * {{rgR}} + {{rgRg}}px) 0 calc((100% - 12px) / 3 * {{rgI}} + {{rgIg}}px) round 999px)">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="3">
+<span style="flex: 1; text-align: center; font-size: 14px; font-weight: 700; padding: 8px 0; color: #17171F">{{r.label}}</span>
+</sc-for>
+</div>
+</div>
+
+<sc-for list="{{lines}}" as="c" hint-placeholder-count="2">
+<section style="background: #FFFFFF; border-radius: 24px; margin: 12px 14px 0; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.03)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em">{{c.title}}</h2>
+<div style="font-size: 13px; font-weight: 500; color: #55556A; margin-top: 2px">{{c.sub}}</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 12px">
+<span style="font-family: 'Space Mono', ui-monospace, monospace; font-size: 30px; font-weight: 700; letter-spacing: -0.06em; line-height: 1">{{c.head}}</span>
+<span style="display: inline-flex; align-items: center; gap: 3px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; padding: 2px 8px; border-radius: 999px; background: {{c.d.bg}}; color: {{c.d.fg}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.d.icon}}"></path></svg>{{c.d.text}}</span>
+<span style="font-size: 12px; font-weight: 500; color: #8A8A9C">{{c.dNote}}</span>
+</div>
+<div tabindex="0" role="img" aria-label="{{c.aria}}" onPointerMove="{{c.move}}" onPointerLeave="{{c.leave}}" onFocus="{{c.focus}}" onBlur="{{c.leave}}" onKeyDown="{{c.key}}" style="position: relative; margin-top: 14px; width: 315px; height: 160px; touch-action: pan-y; border-radius: 8px">
+<svg width="315" height="160" viewBox="0 0 315 160" aria-hidden="true" style="display: block; position: absolute; inset: 0">
+<path d="{{c.grid}}" stroke="#EEEEF3" stroke-width="1" fill="none"></path>
+<path d="{{c.area}}" fill="#5B5CF6" fill-opacity="{{c.areaOp}}"></path>
+<path d="{{c.line}}" fill="none" stroke="#5B5CF6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<line x1="{{c.hx}}" x2="{{c.hx}}" y1="12" y2="136" stroke="#B8B8C8" stroke-width="1" opacity="{{c.hOp}}"></line>
+<circle cx="{{c.lx}}" cy="{{c.ly}}" r="4" fill="#5B5CF6" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="{{c.hx}}" cy="{{c.hy}}" r="4.5" fill="#5B5CF6" stroke="#FFFFFF" stroke-width="2" opacity="{{c.hOp}}"></circle>
+</svg>
+<sc-for list="{{c.labels}}" as="g" hint-placeholder-count="5">
+<span style="position: absolute; left: 0; width: 30px; text-align: right; font-size: 11px; font-weight: 600; color: #8A8A9C; font-variant-numeric: tabular-nums; line-height: 14px; top: {{g.top}}px">{{g.text}}</span>
+</sc-for>
+<sc-for list="{{c.ticks}}" as="k" hint-placeholder-count="3">
+<span style="position: absolute; top: 142px; font-size: 11px; font-weight: 600; color: #8A8A9C; white-space: nowrap; line-height: 14px; left: {{k.x}}px; transform: translateX({{k.tx}})">{{k.text}}</span>
+</sc-for>
+<sc-if value="{{c.hasTip}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; pointer-events: none; background: #FFFFFF; border-radius: 12px; padding: 8px 10px; box-shadow: 0 8px 24px rgba(20,20,60,.16); font-size: 12px; font-weight: 600; color: #55556A; white-space: nowrap; z-index: 2; transform: translateX(-50%); left: {{c.tipX}}px; top: {{c.tipY}}px">
+<b style="display: block; font-size: 15px; font-weight: 700; color: #17171F; font-variant-numeric: tabular-nums">{{c.tipV}}</b>
+<span><span style="display: inline-block; width: 12px; height: 2px; border-radius: 1px; background: #5B5CF6; vertical-align: middle; margin-right: 5px"></span>{{c.tipL}}</span>
+</div>
+</sc-if>
+</div>
+</section>
+</sc-for>
+
+<section style="background: #FFFFFF; border-radius: 24px; margin: 12px 14px 0; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.03)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em">Volume load</h2>
+<div style="font-size: 13px; font-weight: 500; color: #55556A; margin-top: 2px">{{vb.sub}}</div>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 12px">
+<span style="font-family: 'Space Mono', ui-monospace, monospace; font-size: 30px; font-weight: 700; letter-spacing: -0.06em; line-height: 1">{{vb.head}}</span>
+<span style="display: inline-flex; align-items: center; gap: 3px; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; padding: 2px 8px; border-radius: 999px; background: {{vb.d.bg}}; color: {{vb.d.fg}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{vb.d.icon}}"></path></svg>{{vb.d.text}}</span>
+<span style="font-size: 12px; font-weight: 500; color: #8A8A9C">{{vb.dNote}}</span>
+</div>
+<div onPointerLeave="{{vb.leave}}" style="position: relative; margin-top: 14px; width: 315px; height: 150px; touch-action: pan-y">
+<sc-for list="{{vb.grid}}" as="g" hint-placeholder-count="4">
+<span aria-hidden="true" style="position: absolute; left: 38px; right: 0; height: 1px; background: #EEEEF3; top: {{g.y}}px"></span>
+<span aria-hidden="true" style="position: absolute; left: 0; width: 30px; text-align: right; font-size: 11px; font-weight: 600; color: #8A8A9C; line-height: 14px; top: {{g.ly}}px">{{g.text}}</span>
+</sc-for>
+<sc-for list="{{vb.bars}}" as="b" hint-placeholder-count="13">
+<button aria-label="{{b.aria}}" onPointerEnter="{{b.show}}" onFocus="{{b.show}}" onBlur="{{vb.leave}}" style="position: absolute; top: 12px; height: 114px; left: {{b.x}}px; width: {{b.w}}px; border-radius: 4px">
+<span style="position: absolute; bottom: 0; left: {{b.bx}}px; width: {{b.bw}}px; height: {{b.h}}px; border-radius: {{b.r}}px {{b.r}}px 0 0; background: {{b.fill}}; opacity: {{b.op}}; transition: opacity .12s ease"></span>
+</button>
+</sc-for>
+<sc-for list="{{vb.ticks}}" as="k" hint-placeholder-count="3">
+<span aria-hidden="true" style="position: absolute; top: 132px; font-size: 11px; font-weight: 600; color: #8A8A9C; white-space: nowrap; line-height: 14px; transform: translateX(-50%); left: {{k.x}}px">{{k.text}}</span>
+</sc-for>
+<sc-if value="{{vb.hasTip}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; pointer-events: none; background: #FFFFFF; border-radius: 12px; padding: 8px 10px; box-shadow: 0 8px 24px rgba(20,20,60,.16); font-size: 12px; font-weight: 600; color: #55556A; white-space: nowrap; z-index: 2; transform: translateX(-50%); left: {{vb.tipX}}px; top: {{vb.tipY}}px">
+<b style="display: block; font-size: 15px; font-weight: 700; color: #17171F; font-variant-numeric: tabular-nums">{{vb.tipV}}</b>
+<span>{{vb.tipL}}</span>
+</div>
+</sc-if>
+</div>
+<div style="display: flex; gap: 14px; margin-top: 8px; font-size: 12px; font-weight: 600; color: #55556A">
+<span style="display: flex; align-items: center; gap: 5px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #5B5CF6"></span>{{vb.curLabel}}</span>
+<span style="display: flex; align-items: center; gap: 5px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #C9CAFB"></span>Earlier</span>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 24px; margin: 12px 14px 24px; padding: 16px; box-shadow: 0 1px 2px rgba(0,0,0,.03)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.015em">Recent sessions</h2>
+<div style="margin-top: 4px">
+<sc-for list="{{recent}}" as="s" hint-placeholder-count="4">
+<div style="display: grid; grid-template-columns: 70px 1fr auto; align-items: center; gap: 8px; padding: 11px 0; border-top: 1px solid {{s.border}}; font-variant-numeric: tabular-nums">
+<span style="font-size: 13px; font-weight: 600; color: #8A8A9C">{{s.date}}</span>
+<span style="font-size: 15px; font-weight: 700">{{s.top}}</span>
+<span style="font-size: 12px; font-weight: 600; color: #A0A0B2">{{s.note}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+</div>
+
+<nav aria-label="Main" style="flex: none; position: relative; z-index: 2; display: flex; align-items: flex-end; background: rgba(255,255,255,.82); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-top: 1px solid #E6E6EE; padding: 8px 4px 26px; user-select: none">
+<sc-for list="{{nav.left}}" as="t" hint-placeholder-count="2">
+<a href="{{t.href}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a>
+</sc-for>
+<a href="Main.dc.html" aria-label="Train" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: #A4A4B6; font-weight: 500">
+<span style="height: 28px; display: flex; align-items: center; justify-content: center"><span class="oG" style="font-size: 23px; line-height: 38px; margin: -5px 0">Ö</span></span>
+Train</a>
+<sc-for list="{{nav.right}}" as="t" hint-placeholder-count="2">
+<a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"exercise":{"editor":"enum","options":["Incline dumbbell press","Back squat","Lat pulldown","Romanian deadlift","Cable fly"],"default":"Incline dumbbell press"},"$preview":{"width":375,"height":1900}}'>
+function nbRR(x, y, w, h, r) {
+  return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r + 'h' + (-(w - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + (-r) + 'v' + (-(h - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (-r) + 'z';
+}
+function nbC(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+function nbNav(active) {
+  var none = 'M0 0';
+  var bars = nbRR(4, 12, 4, 8, 1) + nbRR(10, 4, 4, 16, 1) + nbRR(16, 8, 4, 12, 1);
+  var arrow = 'M7.5 14.5l3 -3l2 2l4 -4.5M13.5 9h3v3';
+  var boxes = nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5), lines = 'M13 5h8M13 9h5M13 15h8M13 19h5';
+  var sl = 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0', knobs = nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2);
+  var defs = [
+    {id: 'stats', label: 'Stats', href: 'Stats.dc.html', o: bars, f: bars},
+    {id: 'progress', label: 'Progress', href: 'Achievements.dc.html', o: nbC(12, 12, 9) + arrow, f: nbC(12, 12, 9), k: arrow},
+    {id: 'exercises', label: 'Sessions', href: 'Templates.dc.html', o: boxes + lines, f: boxes, s: lines},
+    {id: 'settings', label: 'Settings', href: '#', o: sl + knobs, f: knobs, s: sl}
+  ];
+  var mk = function (d) {
+    var on = d.id === active;
+    return {label: d.label, href: d.href, cur: on ? 'page' : 'false', o: d.o, f: d.f || none, s: d.s || none, k: d.k || none,
+      onOp: on ? 1 : 0, offOp: on ? 0 : 1, color: on ? '#17171F' : '#A4A4B6', weight: on ? 700 : 500};
+  };
+  return {left: [mk(defs[1]), mk(defs[0])], right: [mk(defs[2]), mk(defs[3])]};
+}
+var XD_CFG = {
+  'Incline dumbbell press': {group: 'Chest · dumbbell', start: 24, inc: 2, seed: 3, end: 9},
+  'Back squat': {group: 'Legs · barbell', start: 92.5, inc: 2.5, seed: 5, end: 7},
+  'Lat pulldown': {group: 'Back · cable', start: 50, inc: 2.5, seed: 9, end: 5},
+  'Romanian deadlift': {group: 'Hamstrings · barbell', start: 95, inc: 5, seed: 11, end: 7},
+  'Cable fly': {group: 'Chest · cable', start: 12.5, inc: 1.25, seed: 13, end: 9}
+};
+var XD_MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var XD_DAY = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+var XD_UP = 'M17 7l-10 10M8 7l9 0l0 9', XD_DN = 'M7 7l10 10M17 8l0 9l-9 0', XD_FLAT = 'M5 12l14 0';
+function xdFmt(n) { return (Math.round(n * 100) / 100).toString(); }
+function xdDate(d) { return d.getDate() + ' ' + XD_MON[d.getMonth()]; }
+function xdDelta(cur, prev, unit, pct) {
+  var d = cur - prev, k = d > 0.0001 ? 'up' : d < -0.0001 ? 'dn' : 'flat';
+  var c = {up: ['#DDF4EA', '#1E6E53', XD_UP], dn: ['#FFE8E3', '#A33A1B', XD_DN], flat: ['#F0F0F4', '#55556A', XD_FLAT]}[k];
+  var txt = pct ? (prev ? Math.round(d / prev * 100) : 0) + '%' : xdFmt(Math.abs(d)) + unit;
+  return {bg: c[0], fg: c[1], icon: c[2], text: (d > 0.0001 ? '+' : d < -0.0001 ? '−' : '') + (pct ? txt.replace('-', '') : txt)};
+}
+function xdData(name) {
+  var cfg = XD_CFG[name] || XD_CFG['Incline dumbbell press'];
+  var seed = cfg.seed, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  var end = new Date(2026, 9, cfg.end), S = [], w = cfg.start, reps = 7;
+  var round = function (v) { return Math.round(v / cfg.inc) * cfg.inc; };
+  for (var wk = 51; wk >= 0; wk--) {
+    var days = rnd() < 0.55 ? [3, 0] : [1];
+    for (var j = 0; j < days.length; j++) {
+      var d = new Date(end); d.setDate(d.getDate() - wk * 7 - (wk === 0 ? 0 : days[j]));
+      if (wk === 0 && j > 0) continue;
+      var deload = (51 - wk) % 11 === 10 && j === 0;
+      var tw = deload ? round(w * 0.9) : w, tr = deload ? 8 : reps;
+      var sets = [[tw, tr], [tw, Math.max(4, tr - 1)], [round(tw * 0.9), tr + 1]];
+      var vol = sets.reduce(function (a, s) { return a + s[0] * s[1]; }, 0);
+      S.push({d: d, w: tw, r: tr, e1: tw * (1 + tr / 30), vol: vol, deload: deload});
+      if (!deload) { if (reps >= 10) { w = w + cfg.inc; reps = 6; } else if (rnd() < 0.36) reps++; }
+    }
+  }
+  S.sort(function (a, b) { return a.d - b.d; });
+  return {cfg: cfg, S: S};
+}
+function xdNice(mn, mx, zero) {
+  if (zero) mn = 0;
+  var span = mx - mn || mx || 1, rough = span / 4, p = Math.pow(10, Math.floor(Math.log10(rough))), f = rough / p;
+  var st = (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+  var lo = Math.floor(mn / st) * st, hi = Math.ceil(mx / st) * st;
+  if (hi === lo) hi = lo + st;
+  return {lo: lo, hi: hi, st: st};
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var m = this.m || (this.m = {rg: 2, hv: [-1, -1], hb: -1});
+    var name = this.props.exercise ?? 'Incline dumbbell press';
+    if (this.dn !== name) { this.dn = name; this.D = xdData(name); m.hv = [-1, -1]; m.hb = -1; }
+    var D = this.D, S = D.S, cfg = D.cfg;
+    var up = function () { self.forceUpdate(); };
+    var RANGES = [['3M', 13, '3 months'], ['6M', 26, '6 months'], ['1Y', 52, 'year']];
+    var R = RANGES[m.rg];
+    var cutoff = new Date(2026, 9, 9); cutoff.setDate(cutoff.getDate() - R[1] * 7 + 1);
+    var P = S.filter(function (s) { return s.d >= cutoff; });
+    var last = S[S.length - 1];
+    var maxS = S.reduce(function (a, s) { return s.w > a.w ? s : a; }, S[0]);
+    var firstMax = S.filter(function (s) { return s.w === maxS.w; })[0];
+    var total = S.reduce(function (a, s) { return a + s.vol; }, 0);
+
+    var W0 = 315, H = 160, pl = 38, pr = 10, pt = 12, pb = 24, iw = W0 - pl - pr, ih = H - pt - pb;
+    var mkLine = function (ci, key, step, fmtV, title, sub, unit) {
+      var vals = P.map(function (s) { return s[key]; });
+      var nc = xdNice(Math.min.apply(null, vals), Math.max.apply(null, vals), false);
+      var L = P.length - 1;
+      var x = function (i) { return pl + (L ? i * iw / L : iw / 2); };
+      var y = function (v) { return pt + ih - (v - nc.lo) / (nc.hi - nc.lo) * ih; };
+      var grid = '', labels = [];
+      for (var k = 0; nc.lo + k * nc.st <= nc.hi + 1e-6; k++) { var gv = Math.round((nc.lo + k * nc.st) * 100) / 100, gy = y(gv); grid += 'M' + pl + ',' + gy.toFixed(1) + 'H' + (W0 - pr); labels.push({top: (gy - 7).toFixed(1), text: xdFmt(gv)}); }
+      var line = '';
+      P.forEach(function (s, i) {
+        if (!i) line = 'M' + x(0).toFixed(1) + ',' + y(s[key]).toFixed(1);
+        else if (step) line += 'H' + x(i).toFixed(1) + 'V' + y(s[key]).toFixed(1);
+        else line += 'L' + x(i).toFixed(1) + ',' + y(s[key]).toFixed(1);
+      });
+      var hv = m.hv[ci] >= 0 && m.hv[ci] <= L ? m.hv[ci] : -1, hs = hv >= 0 ? P[hv] : null;
+      var tickIdx = [0, Math.round(L / 2), L].filter(function (v, i, a) { return a.indexOf(v) === i; });
+      var firstV = vals[0], lastV = vals[L];
+      return {
+        title: title, sub: sub, head: fmtV(lastV), d: xdDelta(Math.round(lastV * 2) / 2, Math.round(firstV * 2) / 2, unit, false), dNote: 'over ' + R[2],
+        aria: title + '. Latest ' + fmtV(lastV) + '. Use arrow keys to read each session.',
+        grid: grid, labels: labels, line: line,
+        area: line + 'L' + x(L).toFixed(1) + ',' + (pt + ih) + 'L' + x(0).toFixed(1) + ',' + (pt + ih) + 'Z',
+        areaOp: step ? 0 : 0.1,
+        lx: x(L).toFixed(1), ly: y(lastV).toFixed(1),
+        ticks: tickIdx.map(function (i) { return {x: x(i).toFixed(1), tx: i === 0 ? '0' : i === L ? '-100%' : '-50%', text: xdDate(P[i].d)}; }),
+        hOp: hv >= 0 ? 1 : 0, hx: hv >= 0 ? x(hv).toFixed(1) : 0, hy: hs ? y(hs[key]).toFixed(1) : 0,
+        hasTip: hv >= 0, tipX: hv >= 0 ? Math.min(W0 - 70, Math.max(70, x(hv))).toFixed(0) : 0, tipY: hs ? Math.max(0, y(hs[key]) - 62).toFixed(0) : 0,
+        tipV: hs ? (key === 'w' ? xdFmt(hs.w) + ' kg × ' + hs.r : fmtV(hs[key])) : '',
+        tipL: hs ? XD_DAY[hs.d.getDay()] + ' ' + xdDate(hs.d) + (hs.deload ? ' · deload' : key === 'e1' ? ' · ' + xdFmt(hs.w) + ' × ' + hs.r : '') : '',
+        move: function (ev) {
+          var r = ev.currentTarget.getBoundingClientRect(), sc = r.width / W0 || 1, px = (ev.clientX - r.left) / sc;
+          var idx = Math.max(0, Math.min(L, Math.round((px - pl) / (iw / (L || 1)))));
+          if (idx !== m.hv[ci]) { m.hv[ci] = idx; up(); }
+        },
+        leave: function () { if (m.hv[ci] !== -1) { m.hv[ci] = -1; up(); } },
+        focus: function () { m.hv[ci] = L; up(); },
+        key: function (ev) { if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft') { ev.preventDefault(); var c0 = m.hv[ci] < 0 ? L : m.hv[ci]; m.hv[ci] = Math.max(0, Math.min(L, c0 + (ev.key === 'ArrowRight' ? 1 : -1))); up(); } }
+      };
+    };
+
+    // Volume buckets: weekly for 3M/6M, monthly for 1Y
+    var weekly = m.rg < 2, B = [];
+    P.forEach(function (s) {
+      var key, lab, short;
+      if (weekly) { var ms = new Date(s.d); ms.setDate(ms.getDate() - ((ms.getDay() + 6) % 7)); key = ms.toDateString(); lab = 'Week of ' + xdDate(ms); short = xdDate(ms); }
+      else { key = s.d.getFullYear() + '-' + s.d.getMonth(); lab = XD_MON[s.d.getMonth()] + ' ' + s.d.getFullYear(); short = XD_MON[s.d.getMonth()]; }
+      var b = B[B.length - 1];
+      if (!b || b.k !== key) { b = {k: key, lab: lab, short: short, v: 0, n: 0}; B.push(b); }
+      b.v += s.vol; b.n++;
+    });
+    var BL = B.length - 1, bH = 150, bpl = 38, bpt = 12, bih = 114, biw = W0 - bpl;
+    var vmax = Math.max.apply(null, B.map(function (b) { return b.v; }));
+    var bn = xdNice(0, vmax, true);
+    var by = function (v) { return bpt + bih - v / bn.hi * bih; };
+    var band = biw / B.length, bw = Math.min(22, band * 0.62);
+    var tfmt = function (kg) { return kg >= 1000 ? (kg / 1000).toFixed(kg >= 10000 ? 1 : 2).replace(/\.?0+$/, '') + 't' : Math.round(kg) + 'kg'; };
+    var bgrid = [];
+    for (var j = 0; j * bn.st <= bn.hi + 1e-6; j++) { var bv = j * bn.st; bgrid.push({y: by(bv).toFixed(1), ly: (by(bv) - 7).toFixed(1), text: tfmt(bv)}); }
+    var hb = m.hb >= 0 && m.hb <= BL ? m.hb : -1;
+    var avg = B.reduce(function (a, b) { return a + b.v; }, 0) / B.length;
+    var half = Math.floor(B.length / 2);
+    var firstHalf = B.slice(0, half).reduce(function (a, b) { return a + b.v; }, 0) / Math.max(1, half);
+    var secondHalf = B.slice(half).reduce(function (a, b) { return a + b.v; }, 0) / Math.max(1, B.length - half);
+    var bTicks = [0, Math.round(BL / 2), BL].filter(function (v, i, a) { return a.indexOf(v) === i; });
+
+    var lastDays = Math.round((new Date(2026, 9, 10) - last.d) / 86400000);
+    var recent = S.slice(-4).reverse().map(function (s, i, arr) {
+      var prev = S[S.indexOf(s) - 1];
+      var note = s.deload ? 'Deload' : !prev ? 'First' : s.w > prev.w ? '+' + xdFmt(s.w - prev.w) + ' kg' : s.w === prev.w && s.r > prev.r ? '+' + (s.r - prev.r) + ' rep' + (s.r - prev.r > 1 ? 's' : '') : 'Same';
+      return {date: XD_DAY[s.d.getDay()] + ' ' + xdDate(s.d), top: xdFmt(s.w) + ' kg × ' + s.r, note: note, border: i === 0 ? 'transparent' : '#EEEEF3'};
+    });
+
+    return {
+      ex: {name: name, cap: cfg.group},
+      tiles: [
+        {cap: 'Sessions logged', v: S.length, unit: '', sub: 'since ' + xdDate(S[0].d) + ' ' + S[0].d.getFullYear()},
+        {cap: 'Days since last', v: lastDays, unit: lastDays === 1 ? 'day' : 'days', sub: XD_DAY[last.d.getDay()] + ' ' + xdDate(last.d)},
+        {cap: 'Max weight', v: xdFmt(maxS.w), unit: 'kg', sub: '× ' + firstMax.r + ' · first hit ' + xdDate(firstMax.d)},
+        {cap: 'Total lifted', v: (total / 1000).toFixed(1), unit: 't', sub: 'All working sets'}
+      ],
+      rgI: m.rg, rgIg: 6 * m.rg, rgR: 2 - m.rg, rgRg: 6 * (2 - m.rg),
+      ranges: RANGES.map(function (r, i) {
+        return {label: r[0], aria: 'Last ' + r[2], selStr: String(i === m.rg), pick: function () { m.rg = i; m.hv = [-1, -1]; m.hb = -1; up(); }};
+      }),
+      lines: [
+        mkLine(0, 'w', true, function (v) { return xdFmt(v) + ' kg'; }, 'Working weight', 'Top working set each session', ' kg'),
+        mkLine(1, 'e1', false, function (v) { return xdFmt(Math.round(v * 2) / 2) + ' kg'; }, 'Estimated 1RM', 'From your top working set (Epley)', ' kg')
+      ],
+      vb: {
+        sub: (weekly ? 'Per week' : 'Per month') + ', working sets · weight × reps',
+        head: tfmt(avg), d: xdDelta(secondHalf, firstHalf, '', true), dNote: (weekly ? 'avg / week' : 'avg / month') + ' vs first half',
+        grid: bgrid,
+        bars: B.map(function (b, i) {
+          var h = bpt + bih - by(b.v), r = Math.min(4, h);
+          return {x: (bpl + band * i).toFixed(1), w: band.toFixed(1), bx: ((band - bw) / 2).toFixed(1), bw: bw.toFixed(1), h: h.toFixed(1), r: r.toFixed(1),
+            fill: i === BL ? '#5B5CF6' : '#C9CAFB', op: hb >= 0 && hb !== i ? 0.55 : 1,
+            aria: b.lab + ': ' + tfmt(b.v) + ' across ' + b.n + (b.n === 1 ? ' session' : ' sessions'),
+            show: function () { m.hb = i; up(); }};
+        }),
+        ticks: bTicks.map(function (i) { return {x: (bpl + band * i + band / 2).toFixed(1), text: B[i].short}; }),
+        hasTip: hb >= 0,
+        tipX: hb >= 0 ? Math.min(W0 - 70, Math.max(70, bpl + band * hb + band / 2)).toFixed(0) : 0,
+        tipY: hb >= 0 ? Math.max(0, by(B[hb].v) - 58).toFixed(0) : 0,
+        tipV: hb >= 0 ? tfmt(B[hb].v) : '', tipL: hb >= 0 ? B[hb].lab + ' · ' + B[hb].n + (B[hb].n === 1 ? ' session' : ' sessions') : '',
+        leave: function () { if (m.hb !== -1) { m.hb = -1; up(); } },
+        curLabel: weekly ? 'This week' : 'This month'
+      },
+      recent: recent,
+      nav: nbNav('stats')
+    };
+  }
+}
+</script>
+</body>
+</html>

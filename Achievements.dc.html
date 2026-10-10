@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Overlöd · Progress</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F6F9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Overlöd">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+html,body{margin:0;height:100%;background:#F6F6F9;overscroll-behavior:none}
+body{touch-action:manipulation;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+x-dc{display:block;max-width:480px;margin:0 auto;height:100dvh}
+x-dc>:first-child{width:100%!important;height:100dvh!important}
+.proto-status{display:none!important}
+@view-transition{navigation:auto}
+@media (min-width:520px){x-dc{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 20px 60px rgba(30,30,80,.12)}}
+</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Inter+Tight:ital,wght@1,900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:inherit}a:hover{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(91,92,246,.45)}
+.fr{--bg:#F3F3F6;--card:#fff;--cardsh:0 1px 2px rgba(0,0,0,.04);--text:#17171F;--mut:#86869A;--pend:#B9B9C8;--hbtn:rgba(255,255,255,.55);--liveb:rgba(255,255,255,.8);--livebg:linear-gradient(160deg,rgba(250,250,255,.9),rgba(226,228,255,.92));--wk:#6A6890;--tab:rgba(255,255,255,.74);--tabb:rgba(255,255,255,.6);--panel:#fff;--pline:#EFEFF3;--scrim:rgba(20,20,40,.36);--m:#5B5CF6;--ml:#8B8CF9;--md:#4142D9;--mt:#EEEEFF;--mg:rgba(91,92,246,.38);--mg2:rgba(91,92,246,.16);--s:#FF8A5C;--sd:#D9541F;--st:#FFEEE6;--curg:linear-gradient(100deg,#E2E3FF 0%,#ECE6FF 55%,#FBEAF3 100%);--lock:#ECECF3;--ring:#E4E4EE;--h0:#E9E9F1;--handle:#DADAE2;--sk1:rgba(150,150,255,.7);--sk2:rgba(205,185,255,.8);--sk3:rgba(255,190,160,.55);--sk4:rgba(255,170,215,.45)}
+.fr.dark{--bg:#0D0D12;--card:#18181F;--cardsh:inset 0 1px 0 rgba(255,255,255,.045);--text:#EFEFF6;--mut:#8A8AA0;--pend:#55556A;--hbtn:rgba(255,255,255,.08);--liveb:rgba(255,255,255,.07);--livebg:linear-gradient(160deg,rgba(36,34,78,.72),rgba(22,21,50,.8));--wk:#9C9AC0;--tab:rgba(16,16,22,.72);--tabb:rgba(255,255,255,.06);--panel:#1B1B23;--pline:#2A2A35;--scrim:rgba(0,0,0,.55);--m:#7173FF;--ml:#A5A6FF;--md:#B4B5FF;--mt:rgba(113,115,255,.16);--mg:rgba(113,115,255,.55);--mg2:rgba(113,115,255,.22);--s:#FF9A6B;--sd:#FFB08F;--st:rgba(255,138,92,.16);--curg:linear-gradient(100deg,rgba(113,115,255,.30) 0%,rgba(168,85,247,.18) 55%,rgba(236,72,153,.10) 100%);--lock:#22222C;--ring:#2A2A36;--h0:#20202A;--handle:#3A3A46;--sk1:rgba(100,90,255,.5);--sk2:rgba(170,110,255,.36);--sk3:rgba(255,140,90,.26);--sk4:rgba(255,110,175,.3)}
+.sky{position:absolute;top:-60px;left:-60px;right:-60px;height:440px;z-index:0;filter:blur(22px);-webkit-mask-image:linear-gradient(#000 38%,transparent 90%);mask-image:linear-gradient(#000 38%,transparent 90%);pointer-events:none}
+.bl{position:absolute;border-radius:50%;will-change:transform}
+.b1{width:300px;height:260px;left:0;top:40px;background:radial-gradient(circle,var(--sk1),transparent 68%);animation:d1 17s ease-in-out infinite alternate}
+.b2{width:320px;height:250px;left:150px;top:0;background:radial-gradient(circle,var(--sk2),transparent 68%);animation:d2 21s ease-in-out infinite alternate}
+.b3{width:260px;height:260px;left:300px;top:110px;background:radial-gradient(circle,var(--sk3),transparent 68%);animation:d3 19s ease-in-out infinite alternate}
+.b4{width:280px;height:220px;left:110px;top:150px;background:radial-gradient(circle,var(--sk4),transparent 68%);animation:d4 23s ease-in-out infinite alternate}
+@keyframes d1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,30px) scale(1.15)}100%{transform:translate(20px,70px) scale(.92)}}
+@keyframes d2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,40px) scale(.9)}100%{transform:translate(-30px,-10px) scale(1.12)}}
+@keyframes d3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-50px) scale(1.18)}100%{transform:translate(-110px,20px) scale(.95)}}
+@keyframes d4{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.2)}100%{transform:translate(-50px,-20px) scale(.9)}}
+.med{position:relative;border-radius:50%;overflow:hidden;background:#4338CA;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.med .bl{filter:blur(8px)}
+.m1{width:70%;height:70%;left:-15%;top:-15%;background:radial-gradient(circle,#6366F1,transparent 70%);animation:m1 7s ease-in-out infinite alternate}
+.m2{width:70%;height:70%;left:40%;top:-10%;background:radial-gradient(circle,#A855F7,transparent 70%);animation:m2 9s ease-in-out infinite alternate}
+.m3{width:60%;height:60%;left:35%;top:45%;background:radial-gradient(circle,#EC4899,transparent 70%);opacity:.55;animation:m3 8s ease-in-out infinite alternate}
+@keyframes m1{to{transform:translate(45%,40%) scale(1.2)}}
+@keyframes m2{to{transform:translate(-40%,35%) scale(.85)}}
+@keyframes m3{to{transform:translate(-35%,-45%) scale(1.15)}}
+.med:after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.4),inset 0 -6px 12px rgba(30,20,90,.25)}
+.med svg{position:relative;z-index:1;filter:drop-shadow(0 1px 4px rgba(30,20,90,.35))}
+.oG{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:26px;line-height:1.4;letter-spacing:-.06em;display:inline-block;padding:0 4px;transform:skewX(-4deg) scaleX(1.06);color:var(--mut)}
+.oG.on{background:linear-gradient(100deg,#15123A 0%,#2E2A8C 30%,#4F50EE 68%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mono{font-family:'Space Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.wmS{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;letter-spacing:-.05em;display:inline-block;padding:0 3px 0 1px;transform:skewX(-4deg) scaleX(1.06);transform-origin:left;background:linear-gradient(100deg,#15123A 0%,#2E2A8C 30%,#4F50EE 68%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fr.dark .wmS{background-image:linear-gradient(100deg,#C9CAFF 0%,#A5A6FF 40%,#C8A2FF 75%,#FFB08F 100%)}
+.press{transition:transform .16s cubic-bezier(0.23,1,0.32,1),background-color .15s ease}
+.press:active{transform:scale(.97)}
+.bdg{transition:transform .16s cubic-bezier(0.23,1,0.32,1)}
+.bdg:active{transform:scale(.95)}
+@keyframes gIn{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1;transform:none}}
+.gIn{animation:gIn .32s cubic-bezier(0.23,1,0.32,1) both}
+.tierPip{position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);z-index:2;font-family:'Space Mono',ui-monospace,monospace;font-size:10px;font-weight:700;letter-spacing:.02em;line-height:1;padding:3px 6px 3px;border-radius:999px;background:var(--card);color:var(--md);box-shadow:0 2px 6px rgba(40,30,120,.18);white-space:nowrap}
+.chipRow{display:flex;gap:8px;padding:4px 12px 14px;margin:-4px 0 -14px;overflow-x:auto;scrollbar-width:none}
+.chipRow::-webkit-scrollbar{display:none}
+@media (prefers-reduced-motion:reduce){.gIn{animation:none}}
+@keyframes sheetin{from{transform:translateY(110%)}to{transform:none}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.bl{animation:none}}
+</style>
+</helmet>
+<div class="fr {{themeCls}}" style="width: 375px; height: 1720px; position: relative; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-variant-numeric: tabular-nums; display: flex; flex-direction: column; user-select: none; transition: background .35s, color .35s">
+<div style="flex: 1; min-height: 0; overflow-y: auto; position: relative">
+<div class="sky" aria-hidden="true"><div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div><div class="bl b4"></div></div>
+<div style="position: relative; z-index: 1; padding-bottom: 24px">
+
+<div class="proto-status" style="display: flex; justify-content: space-between; padding: 14px 26px 0; font-size: 14px; font-weight: 600">
+<span>9:41</span>
+<span style="display: flex; gap: 5px" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18l0 -3M10 18l0 -6M14 18l0 -9M18 18l0 -12"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l.01 0M9.172 15.172a4 4 0 0 1 5.656 0M6.343 12.343a8 8 0 0 1 11.314 0M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2M7 10l0 4M10 10l0 4M13 10l0 4"></path></svg>
+</span>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start; padding: 22px 20px 0">
+<div>
+<h1 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05">Progress</h1>
+<div style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--wk); font-weight: 500">{{countLabel}}</div>
+</div>
+<button aria-label="Share progress" style="width: 38px; height: 38px; border-radius: 50%; background: var(--hbtn); display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0M8.7 10.7l6.6 -3.4M8.7 13.3l6.6 3.4"></path></svg>
+</button>
+</div>
+
+<section aria-label="Overlöd score" style="margin: 18px 12px 0; border-radius: 22px; background: var(--livebg); border: 1px solid var(--liveb); box-shadow: 0 10px 30px var(--mg2); overflow: hidden">
+<div style="display: flex; gap: 14px; align-items: center; padding: 16px 16px 14px">
+<div role="img" aria-label="{{lvAria}}" style="position: relative; width: 78px; height: 78px; flex: none; border-radius: 50%; background: conic-gradient(from -90deg, var(--ml) 0%, var(--m) {{lvPct}}%, var(--ring) 0); box-shadow: 0 8px 22px var(--mg2)">
+<span style="position: absolute; inset: 5px; border-radius: 50%; background: var(--card); display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mut); font-weight: 700; line-height: 1">Level</span>
+<span class="mono" style="font-size: 26px; font-weight: 700; line-height: 1.1; margin-top: 2px; color: var(--text)">{{lv}}</span>
+</span>
+</div>
+<div style="flex: 1; min-width: 0">
+<div style="display: flex; align-items: baseline; gap: 4px; font-size: 15px; font-weight: 700"><span class="wmS" style="font-size: 17px">Overlöd</span><span style="letter-spacing: -0.01em">score</span></div>
+<div style="display: flex; align-items: baseline; gap: 6px; margin-top: 2px"><span class="mono" style="font-size: 32px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1">{{pts}}</span><span style="font-size: 13px; font-weight: 600; color: var(--mut)">pts</span></div>
+<div style="display: flex; align-items: center; gap: 8px; margin-top: 4px; flex-wrap: wrap">
+<span style="font-size: 13px; font-weight: 500; color: var(--mut)">{{toNext}}</span>
+<span class="mono" style="font-size: 11px; font-weight: 700; padding: 3px 7px; border-radius: 999px; background: var(--mt); color: var(--md)">{{wk}}</span>
+</div>
+</div>
+</div>
+<div style="height: 6px; margin: 0 16px; border-radius: 3px; background: var(--mt); overflow: hidden"><div style="height: 100%; width: {{lvPct}}%; border-radius: 3px; background: linear-gradient(90deg,var(--ml),var(--m)); box-shadow: 0 0 10px var(--mg)"></div></div>
+<div style="display: flex; justify-content: space-between; padding: 6px 16px 0; font-size: 11px; font-weight: 600; color: var(--mut)"><span class="mono">{{lvFloor}}</span><span class="mono">{{lvCeil}}</span></div>
+<div style="margin: 12px 8px 0; padding: 4px 8px 4px; border-radius: 16px; background: var(--card); box-shadow: var(--cardsh)">
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 10px 2px 4px">
+<span style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mut); font-weight: 700">Last session · {{lastName}}</span>
+<span class="mono" style="font-size: 13px; font-weight: 700; color: var(--md)">{{lastPts}}</span>
+</div>
+<sc-for list="{{events}}" as="e" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; padding: 9px 2px; border-top: 1px solid {{e.border}}">
+<span style="width: 34px; height: 34px; flex: none; border-radius: 11px; display: flex; align-items: center; justify-content: center; background: var(--mt); color: var(--md)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{e.icon}}"></path></svg></span>
+<span style="flex: 1; min-width: 0">
+<span style="display: block; font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{e.ex}}</span>
+<span style="display: block; font-size: 12px; font-weight: 500; color: var(--mut); margin-top: 1px">{{e.type}} · <span class="mono">{{e.detail}}</span></span>
+</span>
+<span class="mono" style="font-size: 14px; font-weight: 700; color: var(--text)">{{e.pts}}</span>
+</div>
+</sc-for>
+</div>
+<button class="press" onClick="{{openScoring}}" style="display: flex; width: calc(100% - 16px); align-items: center; justify-content: center; gap: 6px; margin: 8px 8px 8px; padding: 11px; border-radius: 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--md)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0M12 8h.01M11 12h1v4h1"></path></svg>How scoring works</button>
+</section>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 24px 20px 12px"><h2 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.015em">Badges</h2><span style="font-size: 14px; color: var(--mut)">{{badgeCount}}</span></div>
+<div class="chipRow" role="group" aria-label="Badge category">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+<button class="press" aria-pressed="{{c.onStr}}" onClick="{{c.pick}}" style="flex: none; font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 999px; {{c.style}}">{{c.label}}</button>
+</sc-for>
+</div>
+<div style="margin: 12px 12px 0; background: var(--card); border-radius: 20px; box-shadow: var(--cardsh)">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 6px; padding: 18px 8px 16px">
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="9">
+<button class="bdg gIn" onClick="{{b.open}}" aria-label="{{b.aria}}" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 4px 2px; border-radius: 14px; animation-delay: {{b.delay}}ms">
+<span style="position: relative; width: 66px; height: 66px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: conic-gradient(var(--m) {{b.pct}}%, var(--ring) 0)">
+<span style="position: absolute; inset: 3px; border-radius: 50%; background: var(--card)"></span>
+<sc-if value="{{b.done}}" hint-placeholder-val="{{true}}">
+<span style="position: relative; border-radius: 50%; box-shadow: 0 6px 16px var(--mg)"><span class="med" style="width: 54px; height: 54px"><span class="bl m1"></span><span class="bl m2"></span><span class="bl m3"></span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{b.icon}}"></path></svg></span></span>
+<span class="tierPip">LV {{b.tier}}</span>
+</sc-if>
+<sc-if value="{{b.locked}}" hint-placeholder-val="{{false}}">
+<span style="position: relative; width: 54px; height: 54px; border-radius: 50%; background: var(--lock); display: flex; align-items: center; justify-content: center; color: var(--pend)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{b.icon}}"></path></svg></span>
+</sc-if>
+</span>
+<span style="font-size: 13px; font-weight: 600; margin-top: 10px; line-height: 1.2">{{b.name}}</span>
+<span class="mono" style="font-size: 10px; color: var(--mut); margin-top: 3px">{{b.sub}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 24px 20px 10px"><h2 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.015em">Personal records</h2><span style="font-size: 14px; font-weight: 500">All</span></div>
+<div style="margin: 0 12px; overflow: hidden; background: var(--card); border-radius: 20px; box-shadow: var(--cardsh)">
+<sc-for list="{{prs}}" as="p" hint-placeholder-count="3">
+<div style="display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 11px 14px; border-top: 1px solid {{p.border}}">
+<div>
+<div style="font-size: 15px; font-weight: 600; display: flex; align-items: center">{{p.name}}<sc-if value="{{p.hasDelta}}" hint-placeholder-val="{{true}}"><span style="font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px; background: var(--st); color: var(--sd); margin-left: 6px">{{p.delta}}</span></sc-if></div>
+<div style="font-size: 12px; color: var(--mut); margin-top: 2px">{{p.e1rm}}</div>
+</div>
+<div style="font-size: 16px; font-weight: 600; color: var(--md)">{{p.best}}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; padding: 24px 20px 10px"><h2 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.015em">Consistency</h2><span style="font-size: 14px; color: var(--mut)">Last 12 weeks</span></div>
+<div style="margin: 0 12px; padding: 14px 16px 16px; background: var(--card); border-radius: 20px; box-shadow: var(--cardsh)">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div><div style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mut); font-weight: 500">Current streak</div><div style="font-size: 28px; font-weight: 700; color: var(--m); margin-top: 2px">7 weeks</div></div>
+<div style="text-align: right"><div style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mut); font-weight: 500">Best</div><div style="font-size: 16px; font-weight: 600; color: var(--s); margin-top: 4px">9 weeks</div></div>
+</div>
+<div role="img" aria-label="Training days heatmap for the last 12 weeks" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: repeat(7, auto); grid-auto-flow: column; gap: 4px; margin-top: 12px">
+<sc-for list="{{heat}}" as="h" hint-placeholder-count="84">
+<span style="display: block; aspect-ratio: 1; border-radius: 4px; background: {{h.c}}"></span>
+</sc-for>
+</div>
+</div>
+
+</div>
+</div>
+
+<nav aria-label="Main" style="flex: none; position: relative; z-index: 2; display: flex; align-items: flex-end; background: var(--tab); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-top: 1px solid var(--tabb); padding: 8px 4px 26px">
+<sc-for list="{{nav.left}}" as="t" hint-placeholder-count="2">
+<sc-if value="{{t.isLink}}" hint-placeholder-val="{{true}}"><a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; text-decoration: none; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke-width="2" style="stroke: var(--card)"></path></g></svg></span>{{t.label}}</a></sc-if>
+<sc-if value="{{t.isBtn}}" hint-placeholder-val="{{false}}"><button onClick="{{t.tap}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke-width="2" style="stroke: var(--card)"></path></g></svg></span>{{t.label}}</button></sc-if>
+</sc-for>
+<a href="Main.dc.html" aria-label="Train" aria-current="{{nav.log.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; text-decoration: none; border-radius: 12px; color: {{nav.log.color}}; font-weight: {{nav.log.weight}}">
+<span style="height: 28px; display: flex; align-items: center; justify-content: center"><span class="{{nav.log.cls}}" style="font-size: 23px; line-height: 38px; margin: -5px 0">Ö</span></span>
+Train</a>
+<sc-for list="{{nav.right}}" as="t" hint-placeholder-count="2">
+<sc-if value="{{t.isLink}}" hint-placeholder-val="{{false}}"><a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; text-decoration: none; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke-width="2" style="stroke: var(--card)"></path></g></svg></span>{{t.label}}</a></sc-if>
+<sc-if value="{{t.isBtn}}" hint-placeholder-val="{{true}}"><button onClick="{{t.tap}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke-width="2" style="stroke: var(--card)"></path></g></svg></span>{{t.label}}</button></sc-if>
+</sc-for>
+</nav>
+
+<sc-if value="{{sheetOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 3">
+<button aria-label="Close" onClick="{{close}}" style="position: absolute; inset: 0; width: 100%; height: 100%; background: var(--scrim); animation: fadein .3s ease-out"></button>
+<div role="dialog" aria-modal="true" aria-label="{{shLabel}}" style="position: absolute; left: 0; right: 0; bottom: 0; background: var(--panel); border-radius: 26px 26px 0 0; padding: 10px 20px 28px; animation: sheetin .35s cubic-bezier(.2,.9,.25,1)">
+<div style="width: 36px; height: 5px; border-radius: 3px; background: var(--handle); margin: 0 auto 18px"></div>
+<sc-if value="{{isBadge}}" hint-placeholder-val="{{true}}">
+<div style="text-align: center">
+<div style="display: flex; justify-content: center">
+<span style="position: relative; width: 108px; height: 108px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: conic-gradient(var(--m) {{sh.pct}}%, var(--ring) 0)">
+<span style="position: absolute; inset: 4px; border-radius: 50%; background: var(--panel)"></span>
+<sc-if value="{{sh.done}}" hint-placeholder-val="{{true}}">
+<span style="position: relative; border-radius: 50%; box-shadow: 0 6px 18px var(--mg)"><span class="med" style="width: 92px; height: 92px"><span class="bl m1"></span><span class="bl m2"></span><span class="bl m3"></span><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{sh.icon}}"></path></svg></span></span>
+</sc-if>
+<sc-if value="{{sh.locked}}" hint-placeholder-val="{{false}}">
+<span style="position: relative; width: 92px; height: 92px; border-radius: 50%; background: var(--lock); display: flex; align-items: center; justify-content: center; color: var(--pend)"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{sh.icon}}"></path></svg></span>
+</sc-if>
+</span>
+</div>
+<div style="margin-top: 14px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mut); font-weight: 700">{{sh.cat}}</div>
+<div style="font-size: 22px; font-weight: 700; margin-top: 4px">{{sh.name}}</div>
+<div style="font-size: 14px; color: var(--mut); margin-top: 6px; line-height: 1.45">{{sh.desc}}</div>
+</div>
+<div role="img" aria-label="{{sh.ladderAria}}" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-top: 18px">
+<sc-for list="{{sh.ladder}}" as="t" hint-placeholder-count="5">
+<span class="mono" style="display: flex; align-items: center; justify-content: center; height: 30px; border-radius: 10px; font-size: 11px; font-weight: 700; {{t.style}}">LV {{t.n}}</span>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-top: 16px"><span>{{sh.nextLabel}}</span><span class="mono" style="color: var(--md)">{{sh.prog}}</span></div>
+<div style="height: 6px; border-radius: 3px; background: var(--mt); overflow: hidden; margin-top: 8px"><div style="height: 100%; border-radius: 3px; background: linear-gradient(90deg,var(--ml),var(--m)); box-shadow: 0 0 10px var(--mg); width: {{sh.pct}}%"></div></div>
+</sc-if>
+<sc-if value="{{isScoring}}" hint-placeholder-val="{{false}}">
+<div style="font-size: 22px; font-weight: 700; letter-spacing: -0.015em">How scoring works</div>
+<div style="font-size: 14px; color: var(--mut); margin-top: 6px; line-height: 1.45">Each lift is compared with the last time you trained it. Beat it and that's an overlöd event. Each event earns points, and the harder the win, the more it's worth.</div>
+<div style="margin-top: 16px; border-radius: 16px; background: var(--bg); padding: 2px 14px">
+<sc-for list="{{rules}}" as="r" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid {{r.border}}">
+<span style="width: 34px; height: 34px; flex: none; border-radius: 11px; display: flex; align-items: center; justify-content: center; background: var(--mt); color: var(--md)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.icon}}"></path></svg></span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 15px; font-weight: 700">{{r.name}}</span><span style="display: block; font-size: 12px; color: var(--mut); margin-top: 1px">{{r.desc}}</span></span>
+<span class="mono" style="font-size: 15px; font-weight: 700; color: var(--md)">{{r.pts}}</span>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 13px; color: var(--mut); margin-top: 12px; line-height: 1.45">Levels get further apart as you climb. Badges level up from the same events.</div>
+</sc-if>
+<button class="press" onClick="{{close}}" style="display: block; width: 100%; padding: 14px; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: var(--curg); color: var(--md); margin-top: 18px">Done</button>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":375,"height":1720}}'>
+function nbRR(x, y, w, h, r) {
+  return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r + 'h' + (-(w - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + (-r) + 'v' + (-(h - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (-r) + 'z';
+}
+function nbC(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+function nbNav(active, style, tap) {
+  var none = 'M0 0';
+  var bars = nbRR(4, 12, 4, 8, 1) + nbRR(10, 4, 4, 16, 1) + nbRR(16, 8, 4, 12, 1);
+  var arrow = 'M7.5 14.5l3 -3l2 2l4 -4.5M13.5 9h3v3';
+  var dumb = nbRR(3.5, 9.5, 2.5, 5, 1) + nbRR(6, 7, 3, 10, 1.2) + nbRR(15, 7, 3, 10, 1.2) + nbRR(18, 9.5, 2.5, 5, 1);
+  var gear = 'M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z';
+  var defs = [
+    {id: 'stats', label: 'Stats', href: 'Stats.dc.html', o: bars, f: bars},
+    {id: 'progress', label: 'Progress', href: 'Achievements.dc.html', o: nbC(12, 12, 9) + arrow, f: nbC(12, 12, 9), k: arrow},
+    {id: 'exercises', label: 'Sessions', href: 'Templates.dc.html', o: nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5) + 'M13 5h8M13 9h5M13 15h8M13 19h5', f: nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5), s: 'M13 5h8M13 9h5M13 15h8M13 19h5'},
+    {id: 'settings', label: 'Settings', o: 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0' + nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2), f: nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2), s: 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0'}
+  ];
+  var mk = function (d) {
+    var on = d.id === active;
+    return {label: d.label, href: d.href || '', isLink: !!d.href, isBtn: !d.href, cur: on ? 'page' : 'false',
+      o: d.o, f: d.f || none, s: d.s || none, k: d.k || none, onOp: on ? 1 : 0, offOp: on ? 0 : 1,
+      color: on ? 'var(--text)' : 'var(--mut)', weight: on ? 700 : 500, tap: function () { if (tap) tap(d.label); }};
+  };
+  var lon = active === 'log';
+  return {
+    left: [mk(defs[1]), mk(defs[0])], right: [mk(defs[2]), mk(defs[3])],
+    isGlyph: style === 'glyph', isPill: style === 'pill', isRaised: style === 'raised',
+    log: {cur: lon ? 'page' : 'false', cls: lon ? 'oG on' : 'oG', color: lon ? 'var(--md)' : 'var(--mut)', weight: lon ? 700 : 500,
+      pillStyle: lon ? 'background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); box-shadow: 0 4px 12px rgba(130,110,220,.22), inset 0 1px 0 rgba(255,255,255,.8)' : 'background: transparent; box-shadow: none',
+      raisedStyle: lon ? 'background: radial-gradient(60% 60% at 25% 30%, rgba(170,160,255,.9), transparent 70%), radial-gradient(60% 60% at 80% 20%, rgba(255,200,170,.85), transparent 70%), radial-gradient(60% 60% at 85% 90%, rgba(170,235,215,.8), transparent 70%), radial-gradient(60% 60% at 35% 95%, rgba(255,180,220,.7), transparent 70%), #EEE8FF; box-shadow: 0 6px 18px rgba(120,100,240,.3), inset 0 1px 0 rgba(255,255,255,.8)' : 'background: var(--card); border: 1px solid var(--pline); box-shadow: 0 4px 14px rgba(30,30,80,.1)'}
+  };
+}
+var AC_ICONS = {
+  'push': 'M12 4l0 12M8 8l4 -4l4 4M4 20h16',
+  'pull': 'M12 8l0 12M8 16l4 4l4 -4M4 4h16',
+  'legs': 'M22 6h-5v5h-5v5h-5v5h-5M6 10v-7M3 6l3 -3l3 3',
+  'weight': 'M3 17l6 -6l4 4l8 -8M14 7l7 0l0 7',
+  'reps': 'M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3',
+  'volume': 'M12 4l-8 4l8 4l8 -4l-8 -4M4 12l8 4l8 -4M4 16l8 4l8 -4',
+  'flame': 'M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z',
+  'calendar': 'M11.5 21h-5.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v6M16 3v4M8 3v4M4 11h16M15 19l2 2l4 -4',
+  'comeback': 'M9 14l-4 -4l4 -4M5 10h11a4 4 0 1 1 0 8h-1'
+};
+/* Working assumptions: weight > reps > volume. Tune once real data exists. */
+var AC_RULES = [
+  {k: 'weight', name: 'Weight up', desc: 'Heavier top working set', pts: 50},
+  {k: 'reps', name: 'Reps up', desc: 'More reps at the same weight', pts: 25},
+  {k: 'volume', name: 'Volume up', desc: 'More total kg × reps', pts: 10}
+];
+function acLvFloor(n) { return 25 * n * (n + 1); }
+var AC_PTS = 4260, AC_WEEK = 185;
+var AC_LAST = {name: 'Push day', ev: [
+  {k: 'weight', ex: 'Incline dumbbell press', detail: '32.5 → 35 kg'},
+  {k: 'reps', ex: 'Overhead press', detail: '8 → 10 reps'},
+  {k: 'volume', ex: 'Cable fly', detail: '+12%'}
+]};
+var AC_CATS = ['All', 'Specialist', 'Overlöd', 'Streaks'];
+var AC_B = [
+  {c: 'Specialist', i: 'legs', n: 'Leg specialist', d: 'Earn overlöd events on leg lifts like squats, deadlifts and leg press.', u: 'leg events', t: 3, v: 21, g: 25},
+  {c: 'Overlöd', i: 'reps', n: 'Rep machine', d: 'Earn reps-up events by beating your reps at the same weight.', u: 'rep events', t: 4, v: 31, g: 40},
+  {c: 'Specialist', i: 'push', n: 'Push specialist', d: 'Earn overlöd events on pressing lifts: bench, overhead, dips and flys.', u: 'push events', t: 3, v: 18, g: 25},
+  {c: 'Streaks', i: 'flame', n: 'Streak master', d: 'Log at least one overlöd event in consecutive sessions.', u: 'sessions in a row', t: 2, v: 6, g: 10},
+  {c: 'Overlöd', i: 'weight', n: 'Weight climber', d: 'Earn weight-up events by adding load to your top working set.', u: 'weight events', t: 2, v: 11, g: 15},
+  {c: 'Specialist', i: 'pull', n: 'Pull specialist', d: 'Earn overlöd events on pulling lifts: rows, pulldowns and curls.', u: 'pull events', t: 2, v: 9, g: 15},
+  {c: 'Streaks', i: 'calendar', n: 'Weekly regular', d: 'Get at least one overlöd event every training week.', u: 'weeks', t: 3, v: 7, g: 12},
+  {c: 'Overlöd', i: 'volume', n: 'Volume builder', d: 'Earn volume-up events by moving more total weight on a lift.', u: 'volume events', t: 1, v: 4, g: 10},
+  {c: 'Streaks', i: 'comeback', n: 'Comeback', d: 'Hit an overlöd event in your first session back after two weeks off.', u: 'comebacks', t: 0, v: 0, g: 1}
+];
+var AC_MAXT = 5;
+var AC_PR = [['Incline dumbbell press', '32.5 kg × 9', 'e1RM 42 kg', '+2.5 kg'], ['Back squat', '92.5 kg × 6', 'e1RM 111 kg', ''], ['Romanian deadlift', '110 kg × 8', 'e1RM 139 kg', '+5 kg']];
+function acHeat() {
+  var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  var cols = ['var(--h0)', 'var(--mt)', 'var(--ml)', 'var(--m)'], out = [];
+  for (var i = 0; i < 84; i++) {
+    var w = Math.floor(i / 7), d = i % 7, lv = 0, r = rnd();
+    if (w >= 5 || w < 2) { if ([0, 2, 4].indexOf(d) > -1) lv = r < 0.88 ? (r < 0.35 ? 3 : 2) : 0; else if (d === 5) lv = r < 0.45 ? 1 : 0; }
+    else lv = d === 1 && r < 0.6 ? 2 : 0;
+    if (w === 11 && d > 3) lv = 0;
+    out.push({c: cols[lv]});
+  }
+  return out;
+}
+function acFmt(n) { return n.toLocaleString('en-GB'); }
+function acRule(k) { return AC_RULES.filter(function (r) { return r.k === k; })[0]; }
+function acPct(b) { return b.t >= AC_MAXT ? 100 : Math.round(b.v / b.g * 100); }
+function acSub(b) { return b.t >= AC_MAXT ? 'MAX LEVEL' : b.v + ' / ' + b.g; }
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var m = this.m || (this.m = {filt: 'All', open: -1, sheet: null});
+    var heat = this.heat || (this.heat = acHeat());
+    var up = function () { self.forceUpdate(); };
+    var lv = 1; while (acLvFloor(lv + 1) <= AC_PTS) lv++;
+    var lo = acLvFloor(lv), hi = acLvFloor(lv + 1), lvPct = Math.round((AC_PTS - lo) / (hi - lo) * 100);
+    var L = AC_B.filter(function (b) { return m.filt === 'All' || b.c === m.filt; }).slice(0, 9);
+    var earned = AC_B.filter(function (b) { return b.t > 0; }).length;
+    var sb = m.sheet === 'badge' && m.open >= 0 ? AC_B[m.open] : null;
+    var lastTotal = AC_LAST.ev.reduce(function (a, e) { return a + acRule(e.k).pts; }, 0);
+    return {
+      themeCls: this.props.dark ? 'dark' : '',
+      nav: nbNav('progress', this.props.trainTab ?? 'glyph', null),
+      countLabel: 'Level ' + lv + ' · ' + earned + ' of ' + AC_B.length + ' badges',
+      lv: String(lv), pts: acFmt(AC_PTS), lvPct: lvPct,
+      lvAria: 'Level ' + lv + ', ' + lvPct + '% of the way to level ' + (lv + 1),
+      toNext: acFmt(hi - AC_PTS) + ' pts to Level ' + (lv + 1),
+      wk: '+' + AC_WEEK + ' this week',
+      lvFloor: 'LV ' + lv + ' · ' + acFmt(lo), lvCeil: 'LV ' + (lv + 1) + ' · ' + acFmt(hi),
+      lastName: AC_LAST.name, lastPts: '+' + lastTotal + ' pts',
+      events: AC_LAST.ev.map(function (e, i) {
+        var r = acRule(e.k);
+        return {ex: e.ex, detail: e.detail, type: r.name, icon: AC_ICONS[e.k], pts: '+' + r.pts, border: i === 0 ? 'transparent' : 'var(--pline)'};
+      }),
+      openScoring: function () { m.sheet = 'score'; up(); },
+      rules: AC_RULES.map(function (r, i) { return {name: r.name, desc: r.desc, icon: AC_ICONS[r.k], pts: '+' + r.pts, border: i === 0 ? 'transparent' : 'var(--pline)'}; }),
+      prs: AC_PR.map(function (p, i) { return {name: p[0], best: p[1], e1rm: p[2], delta: p[3], hasDelta: !!p[3], border: i === 0 ? 'transparent' : 'var(--pline)'}; }),
+      badgeCount: L.filter(function (b) { return b.t > 0; }).length + ' of ' + L.length + ' earned',
+      chips: AC_CATS.map(function (c) {
+        var on = c === m.filt;
+        return {label: c, onStr: String(on),
+          style: on ? 'background: var(--curg); color: var(--md); box-shadow: 0 6px 16px var(--mg2)' : 'background: var(--card); color: var(--mut); box-shadow: var(--cardsh)',
+          pick: function () { m.filt = c; m.gk = (m.gk || 0) + 1; up(); }};
+      }),
+      badges: L.map(function (b, i) {
+        var k = AC_B.indexOf(b);
+        return {name: b.n, icon: AC_ICONS[b.i], done: b.t > 0, locked: b.t === 0, tier: String(b.t),
+          pct: acPct(b), sub: acSub(b), delay: i * 25,
+          aria: b.n + ', ' + (b.t > 0 ? 'level ' + b.t + ', ' : 'locked, ') + b.v + ' of ' + b.g + ' ' + b.u,
+          open: function () { m.sheet = 'badge'; m.open = k; up(); }};
+      }),
+      heat: heat,
+      sheetOpen: !!m.sheet,
+      isBadge: m.sheet === 'badge', isScoring: m.sheet === 'score',
+      shLabel: m.sheet === 'score' ? 'How scoring works' : (sb ? sb.n : ''),
+      sh: sb ? {name: sb.n, cat: sb.c + (sb.t > 0 ? ' · Level ' + sb.t : ' · Locked'), desc: sb.d, icon: AC_ICONS[sb.i], done: sb.t > 0, locked: sb.t === 0,
+        pct: acPct(sb), prog: sb.t >= AC_MAXT ? '' : sb.v + ' / ' + sb.g + ' ' + sb.u,
+        nextLabel: sb.t >= AC_MAXT ? 'Max level reached' : (sb.t === 0 ? 'To unlock' : 'To level ' + (sb.t + 1)),
+        ladderAria: 'Level ' + sb.t + ' of ' + AC_MAXT,
+        ladder: [1, 2, 3, 4, 5].map(function (n) {
+          return {n: String(n), style: n <= sb.t ? 'background: var(--curg); color: var(--md)' : (n === sb.t + 1 ? 'background: var(--panel); color: var(--md); box-shadow: inset 0 0 0 1.5px var(--ml)' : 'background: var(--lock); color: var(--pend)')};
+        })} : {name: '', cat: '', desc: '', icon: '', done: false, locked: false, pct: 0, prog: '', nextLabel: '', ladderAria: '', ladder: []},
+      close: function () { m.sheet = null; m.open = -1; up(); }
+    };
+  }
+}
+</script>
+</body>
+</html>

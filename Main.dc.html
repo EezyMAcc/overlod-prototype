@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Overlöd · Log</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F6F6F9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Overlöd">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+html,body{margin:0;height:100%;background:#F6F6F9;overscroll-behavior:none}
+body{touch-action:manipulation;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}
+x-dc{display:block;max-width:480px;margin:0 auto;height:100dvh}
+x-dc>:first-child{width:100%!important;height:100dvh!important}
+.proto-status{display:none!important}
+@view-transition{navigation:auto}
+@media (min-width:520px){x-dc{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 20px 60px rgba(30,30,80,.12)}}
+</style>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=Inter+Tight:ital,wght@1,900&amp;family=Space+Mono:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#4142D9}a:hover{color:#2A2560}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;margin:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(91,92,246,.45)}
+input{-webkit-appearance:none;appearance:none;background:transparent;border:0;outline:none;padding:0;margin:0;font-family:'DM Sans',sans-serif;color:#17171F;width:100%;min-width:0}
+.oG{font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:26px;line-height:1.4;letter-spacing:-.06em;display:inline-block;padding:0 4px;transform:skewX(-4deg) scaleX(1.06);color:#A4A4B6}
+.oG.on{background:linear-gradient(100deg,#15123A 0%,#2E2A8C 30%,#4F50EE 68%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+input::placeholder{color:#B4B4C4;opacity:1}
+.wm{display:inline-block;margin:0;font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:32px;letter-spacing:-.06em;line-height:1.15;padding:0 8px;transform:skewX(-4deg) scaleX(1.06);background:linear-gradient(100deg,#15123A 0%,#2E2A8C 30%,#4F50EE 68%,#8B5CF6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sky{position:absolute;inset:-60px;filter:blur(24px);pointer-events:none}
+.bl{position:absolute;border-radius:50%;will-change:transform}
+.b1{width:280px;height:240px;left:-10px;top:30px;background:radial-gradient(circle,rgba(170,160,255,.85),transparent 68%);animation:d1 17s ease-in-out infinite alternate}
+.b2{width:300px;height:240px;left:170px;top:0;background:radial-gradient(circle,rgba(255,200,170,.8),transparent 68%);animation:d2 21s ease-in-out infinite alternate}
+.b3{width:260px;height:240px;left:300px;top:150px;background:radial-gradient(circle,rgba(170,235,215,.75),transparent 68%);animation:d3 19s ease-in-out infinite alternate}
+.b4{width:260px;height:220px;left:90px;top:170px;background:radial-gradient(circle,rgba(255,180,220,.6),transparent 68%);animation:d4 23s ease-in-out infinite alternate}
+@keyframes d1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,30px) scale(1.15)}100%{transform:translate(20px,60px) scale(.92)}}
+@keyframes d2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-80px,40px) scale(.9)}100%{transform:translate(-30px,-10px) scale(1.12)}}
+@keyframes d3{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,-50px) scale(1.18)}100%{transform:translate(-110px,10px) scale(.95)}}
+@keyframes d4{0%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.2)}100%{transform:translate(-50px,-20px) scale(.9)}}
+.lava{position:absolute;inset:0;border-radius:999px;overflow:hidden;background:#EEE8FF}
+.lava .bl{filter:blur(16px)}
+.halo{position:absolute;left:16px;right:16px;top:12px;bottom:-8px;border-radius:999px;overflow:hidden;filter:blur(18px);opacity:.5;z-index:-1;background:#E4DCFF}
+.f1{width:230px;height:150px;left:-50px;top:-50px;background:radial-gradient(circle,rgba(170,160,255,.9),transparent 70%);animation:f1 11s ease-in-out infinite alternate}
+.f2{width:220px;height:150px;left:150px;top:-40px;background:radial-gradient(circle,rgba(255,196,165,.9),transparent 70%);animation:f2 13s ease-in-out infinite alternate}
+.f3{width:200px;height:140px;left:230px;top:0;background:radial-gradient(circle,rgba(165,232,210,.85),transparent 70%);animation:f3 12s ease-in-out infinite alternate}
+.f4{width:200px;height:130px;left:70px;top:10px;background:radial-gradient(circle,rgba(255,178,218,.65),transparent 70%);animation:f4 15s ease-in-out infinite alternate}
+@keyframes f1{to{transform:translate(120px,20px) scale(1.2)}}
+@keyframes f2{to{transform:translate(-110px,25px) scale(.85)}}
+@keyframes f3{to{transform:translate(-150px,-15px) scale(1.15)}}
+@keyframes f4{to{transform:translate(110px,-25px) scale(1.1)}}
+.paused .bl{animation-play-state:paused}
+.btnMono{font-family:'DM Sans',sans-serif!important;font-weight:700!important;letter-spacing:.06em!important}
+.slideIx{transition:transform 250ms cubic-bezier(0.77,0,0.175,1),clip-path 250ms cubic-bezier(0.77,0,0.175,1)}
+@media (prefers-reduced-motion:reduce){.slideIx{transition:none}}
+.press{transition:transform .1s ease-out}
+.press:active{transform:scale(.97)}
+.rowb:active{background:#F6F6FA;transform:scale(.99)}
+.addb:active{transform:scale(.98);filter:brightness(.97)}
+.wmDone{display:inline-block;font-family:'Inter Tight',sans-serif;font-style:italic;font-weight:900;font-size:30px;line-height:1.4;letter-spacing:-.06em;padding:0 6px;transform:skewX(-4deg) scaleX(1.06);background:linear-gradient(110deg,rgba(255,255,255,.74) 0%,rgba(255,255,255,.74) 40%,#FFF6EA 47%,#FFFFFF 50%,#FFF6EA 53%,rgba(255,255,255,.74) 60%,rgba(255,255,255,.74) 100%);background-size:260% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+.wmDone.glint{animation:glint 1.6s cubic-bezier(0.77,0,0.175,1) .75s 1 both}
+@keyframes swipe{from{clip-path:inset(0 100% 0 0 round 999px)}to{clip-path:inset(0 0 0 0 round 999px)}}
+@keyframes wmIn{from{opacity:0;transform:translateX(-16px) skewX(-4deg) scaleX(1.06)}to{opacity:1;transform:skewX(-4deg) scaleX(1.06)}}
+@keyframes glint{0%{background-position:120% 0}55%,100%{background-position:-20% 0}}
+@keyframes tin{from{opacity:0;transform:translate(-50%,-10px) scale(.94);filter:blur(6px)}to{opacity:1;transform:translate(-50%,0) scale(1);filter:blur(0)}}
+@keyframes sheetin{from{transform:translateY(110%)}to{transform:none}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes finIn{from{opacity:0;transform:translateY(10px) scale(.97);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.finIn{animation:finIn .4s cubic-bezier(0.23,1,0.32,1) both}
+@media (prefers-reduced-motion:reduce){.finIn{animation:fadein .2s ease both}}
+.tplRow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 8px;border-radius:14px;transition:background-color .15s ease,transform .16s cubic-bezier(0.23,1,0.32,1)}
+@media (hover:hover) and (pointer:fine){.tplRow:hover{background:#F6F5FD}}
+.tplRow:active{transform:scale(.98)}
+@media (prefers-reduced-motion:reduce){.bl{animation:none}.wmDone,.wmDone.glint{animation:none!important;transform:skewX(-4deg) scaleX(1.06)!important;filter:none!important;transition:opacity .2s ease!important}.swipe{transition:none!important}}
+</style>
+</helmet>
+<div class="{{rootCls}}" style="width: 375px; height: 1100px; position: relative; overflow: hidden; background: #F6F6F9; display: flex; flex-direction: column; font-family: 'DM Sans', sans-serif; font-weight: 500; color: #17171F">
+<div style="flex: 1; min-height: 0; overflow-y: auto; position: relative; z-index: 0">
+
+<header style="position: relative; border-radius: 0 0 30px 30px; overflow: hidden; background: #EEE8FF; padding-bottom: 19px; user-select: none">
+<div class="sky" aria-hidden="true"><div class="bl b1"></div><div class="bl b2"></div><div class="bl b3"></div><div class="bl b4"></div></div>
+<div style="position: relative; z-index: 1">
+<div class="proto-status" style="display: flex; justify-content: space-between; padding: 14px 26px 0; font-size: 14px; font-weight: 700">
+<span>9:41</span>
+<span style="display: flex; gap: 5px" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18l0 -3M10 18l0 -6M14 18l0 -9M18 18l0 -12"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l.01 0M9.172 15.172a4 4 0 0 1 5.656 0M6.343 12.343a8 8 0 0 1 11.314 0M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0"></path></svg>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2M7 10l0 4M10 10l0 4M13 10l0 4"></path></svg>
+</span>
+</div>
+<div style="display: flex; justify-content: center; padding: 16px 14px 0"><h1 class="wm">Overlöd</h1></div>
+<div style="position: relative; padding: 14px 10px 0">
+<span aria-hidden="true" class="slideIx" style="position: absolute; top: 14px; bottom: 0; left: 10px; width: calc((100% - 20px) / 7); border-radius: 999px; background: #BBA9FF; box-shadow: 0 8px 20px rgba(120,100,240,.3); transform: translateX({{wkX}}%)"></span>
+<div style="position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+<button class="press" onClick="{{d.pick}}" aria-pressed="{{d.selStr}}" aria-label="{{d.aria}}" style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0 13px; border-radius: 999px; font-size: 13px; {{d.btnStyle}}">
+<span>{{d.name}}</span>
+<span style="width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', ui-monospace, monospace; font-size: 14px; font-weight: 700; position: relative; border-style: solid; border-width: 1.5px; {{d.dnStyle}}">{{d.num}}<sc-if value="{{d.tr}}" hint-placeholder-val="{{false}}"><span style="position: absolute; bottom: -9px; left: 50%; margin-left: -2px; width: 4px; height: 4px; border-radius: 50%; background: #5B5CF6"></span></sc-if></span>
+</button>
+</sc-for>
+</div>
+<div aria-hidden="true" class="slideIx" style="position: absolute; top: 14px; bottom: 0; left: 10px; right: 10px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center; pointer-events: none; background: linear-gradient(180deg, #CFC3FF, #BBA9FF); clip-path: inset(0 {{wkR}}% 0 {{wkL}}% round 999px)">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 0 13px; font-size: 13px; color: #2A2560; font-weight: 700">
+<span>{{d.name}}</span>
+<span style="width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', ui-monospace, monospace; font-size: 14px; font-weight: 700; position: relative; background: #FFFFFF; color: #17171F">{{d.num}}<sc-if value="{{d.tr}}" hint-placeholder-val="{{false}}"><span style="position: absolute; bottom: -9px; left: 50%; margin-left: -2px; width: 4px; height: 4px; border-radius: 50%; background: #5B5CF6"></span></sc-if></span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</header>
+
+<label style="margin: 16px 14px 0; display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1.5px solid #E6E6EE; border-radius: 18px; padding: 0 14px; height: 52px; cursor: text">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4A4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4M13.5 6.5l4 4"></path></svg>
+<input type="text" value="{{title}}" onChange="{{setTitle}}" placeholder="Name this workout" aria-label="Workout title" maxlength="40" autocomplete="off" style="font-size: 18px; font-weight: 700; letter-spacing: -0.015em; height: 24px; line-height: 24px">
+</label>
+
+<sc-if value="{{noEx}}" hint-placeholder-val="{{false}}">
+<div style="margin: 22px 14px 0; padding: 28px 20px 24px; border-radius: 24px; background: #FFFFFF; text-align: center; display: flex; flex-direction: column; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,.04)">
+<div style="width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); display: flex; align-items: center; justify-content: center; color: #5B5CF6; box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 6px 16px rgba(130,110,220,.16)">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h1M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1zM9 12h6M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1zM18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2M22 12h-1"></path></svg>
+</div>
+<div style="font-size: 19px; font-weight: 700; letter-spacing: -0.015em; margin-top: 14px">Nothing logged yet</div>
+<div style="font-size: 14px; font-weight: 500; color: #8A8A9C; margin-top: 4px; line-height: 1.4">Load a template or add your first exercise to start this session.</div>
+<button class="press btnMono" onClick="{{openTpl}}" style="margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 22px; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #2A2560; background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); box-shadow: 0 6px 18px rgba(130,110,220,.18), inset 0 1px 0 rgba(255,255,255,.8)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14M5 12l14 0"></path></svg>Load template</button>
+<button class="press btnMono" onClick="{{openAdd}}" style="margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4142D9">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14M5 12l14 0"></path></svg>Add exercise</button>
+</div>
+</sc-if>
+
+<sc-for list="{{exs}}" as="x" hint-placeholder-count="2">
+<section style="background: #FFFFFF; border-radius: 22px; margin: 12px 14px 0; box-shadow: 0 1px 2px rgba(0,0,0,.04); overflow: hidden">
+<div style="display: flex; align-items: center; gap: 8px; min-height: 58px; padding: 0 8px 0 16px">
+<button onClick="{{x.toggle}}" aria-expanded="{{x.expStr}}" style="flex: 1; min-width: 0; align-self: stretch; display: flex; align-items: center; gap: 6px; font-size: 18px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; text-align: left">
+<span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{x.name}}</span>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A8A9C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; transition: transform .3s cubic-bezier(.2,.9,.25,1); transform: {{x.chev}}"><path d="M6 9l6 6l6 -6"></path></svg>
+</button>
+<span style="font-size: 13px; font-weight: 600; line-height: 1; color: #8A8A9C; white-space: nowrap; display: flex; align-items: center; gap: 6px; flex: none; font-variant-numeric: tabular-nums">
+<sc-if value="{{x.resting}}" hint-placeholder-val="{{false}}">
+<button onClick="{{skipRest}}" aria-label="Rest timer, tap to skip" style="font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; padding: 3px 8px 3px 6px; border-radius: 999px; background: #FFF1EA; color: #B84A17; display: inline-flex; align-items: center; gap: 4px">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 7h11M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1zM6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z"></path></svg>{{restText}}</button>
+</sc-if>
+<span>{{x.setsLabel}}</span>
+</span>
+<button onClick="{{x.opts}}" aria-label="Options for {{x.name}}" style="width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6E6E82; flex: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path></svg>
+</button>
+</div>
+<sc-if value="{{x.open}}" hint-placeholder-val="{{true}}">
+<div role="tablist" aria-label="Phase" style="position: relative; margin: 0 12px; padding: 4px; background: #F2F2F7; border-radius: 14px; display: flex; gap: 4px">
+<span aria-hidden="true" class="slideIx" style="position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc((100% - 16px) / 3); border-radius: 11px; background: #FFFFFF; box-shadow: 0 2px 8px rgba(30,30,80,.08); transform: translateX(calc({{x.ti}} * (100% + 4px)))"></span>
+<sc-for list="{{x.tabs}}" as="t" hint-placeholder-count="3">
+<button role="tab" aria-selected="{{t.selStr}}" onClick="{{t.pick}}" style="position: relative; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 0; border-radius: 11px; font-size: 13px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; color: #6E6E86">
+<span style="width: 6px; height: 6px; border-radius: 50%; flex: none; background: {{t.dot}}"></span>{{t.label}}<span style="color: #A0A0B2; font-weight: 600; font-variant-numeric: tabular-nums">{{t.count}}</span>
+</button>
+</sc-for>
+<div aria-hidden="true" class="slideIx" style="position: absolute; inset: 4px; display: flex; gap: 4px; pointer-events: none; background: #FFFFFF; clip-path: inset(0 calc((100% - 8px) / 3 * {{x.tr}} + {{x.trg}}px) 0 calc((100% - 8px) / 3 * {{x.ti}} + {{x.tig}}px) round 11px)">
+<sc-for list="{{x.tabs}}" as="t" hint-placeholder-count="3">
+<span style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 0; font-size: 13px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; color: #17171F"><span style="width: 6px; height: 6px; border-radius: 50%; flex: none; background: {{t.dot}}"></span>{{t.label}}<span style="color: #A0A0B2; font-weight: 600; font-variant-numeric: tabular-nums">{{t.count}}</span></span>
+</sc-for>
+</div>
+</div>
+<div style="padding: 6px 12px 0">
+<sc-if value="{{x.empty}}" hint-placeholder-val="{{false}}">
+<p style="margin: 0; padding: 14px 6px 6px; font-size: 13px; font-weight: 500; color: #8A8A9C; line-height: 1.45">{{x.emptyText}}<sc-if value="{{x.hasLast}}" hint-placeholder-val="{{false}}"> Last time: <b style="color: #55556A; font-weight: 700; font-variant-numeric: tabular-nums">{{x.lastText}}</b></sc-if></p>
+</sc-if>
+<sc-for list="{{x.rows}}" as="r" hint-placeholder-count="2">
+<sc-if value="{{r.notEdit}}" hint-placeholder-val="{{true}}">
+<button class="rowb" onClick="{{r.open}}" aria-label="{{r.aria}}" style="display: grid; grid-template-columns: 52px 1fr 1fr 66px; align-items: center; width: 100%; height: 44px; padding: 0 6px; border-bottom: 1px solid #F3F3F7; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; border-radius: 10px; text-align: left; transition: background .12s, transform .1s ease-out">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: 0; color: #8A8A9C">{{r.label}}</span>
+<span style="text-align: right">{{r.w}}<span style="font-size: 12px; font-weight: 500; letter-spacing: 0; color: #9A9AAC; margin-left: 2px">kg</span></span>
+<span style="text-align: right">{{r.reps}}<span style="font-size: 12px; font-weight: 500; letter-spacing: 0; color: #9A9AAC; margin-left: 2px">reps</span></span>
+<span style="text-align: right; font-size: 12px; font-weight: 600; letter-spacing: 0; color: {{r.noteColor}}">{{r.note}}</span>
+</button>
+</sc-if>
+<sc-if value="{{r.isEdit}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: 36px 1fr 1fr 40px; gap: 6px; align-items: center; padding: 5px; margin: 4px 0; border-radius: 14px; background: #F6F6FA">
+<button class="press" onClick="{{delSet}}" aria-label="Delete {{r.label}}" style="height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; color: #C8362E">
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7l16 0M10 11l0 6M14 11l0 6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path></svg>
+</button>
+<label style="display: flex; align-items: center; gap: 4px; height: 38px; padding: 0 10px; border-radius: 11px; cursor: text; {{wFld}}">
+<input type="text" inputmode="decimal" autocomplete="off" value="{{ew}}" onChange="{{onW}}" onKeyDown="{{keyW}}" placeholder="{{r.phW}}" aria-label="Weight in kilograms for {{r.label}}" style="text-align: right; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; height: 38px; line-height: 38px">
+<span style="font-size: 12px; font-weight: 500; color: #8A8A9C; flex: none">kg</span>
+</label>
+<label style="display: flex; align-items: center; gap: 4px; height: 38px; padding: 0 10px; border-radius: 11px; cursor: text; {{rFld}}">
+<input type="text" inputmode="numeric" autocomplete="off" value="{{er}}" onChange="{{onR}}" onKeyDown="{{keyR}}" placeholder="{{r.phR}}" aria-label="Reps for {{r.label}}" style="text-align: right; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; height: 38px; line-height: 38px">
+<span style="font-size: 12px; font-weight: 500; color: #8A8A9C; flex: none">reps</span>
+</label>
+<button class="press" onClick="{{save}}" aria-label="Save {{r.label}}" style="height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; {{r.saveStyle}}">
+<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5l10 -10"></path></svg>
+</button>
+</div>
+</sc-if>
+</sc-for>
+</div>
+<button class="addb btnMono" onClick="{{x.add}}" aria-label="{{x.addAria}}" style="display: flex; align-items: center; justify-content: center; gap: 6px; width: calc(100% - 24px); height: 42px; margin: 10px 12px 14px; border-radius: 14px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; transition: transform .1s ease-out, filter .1s; {{x.addStyle}}">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14M5 12l14 0"></path></svg>{{x.addLabel}}</button>
+</sc-if>
+</section>
+</sc-for>
+
+<sc-if value="{{hasEx}}" hint-placeholder-val="{{true}}">
+<button class="addb btnMono" onClick="{{openAdd}}" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: calc(100% - 28px); margin: 12px 14px 0; height: 54px; border-radius: 20px; border: 1.5px dashed #CFC9E6; color: #4A4A70; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14M5 12l14 0"></path></svg>Add exercise</button>
+</sc-if>
+
+<sc-if value="{{canFinish}}" hint-placeholder-val="{{true}}">
+<div class="finIn" style="padding: 26px 0 0">
+<div style="position: relative; margin: 0 14px; height: 64px; border-radius: 999px; user-select: none; isolation: isolate">
+<div class="halo" aria-hidden="true"><div class="bl f1"></div><div class="bl f2"></div><div class="bl f3"></div></div>
+<div class="lava" aria-hidden="true"><div class="bl f4"></div><div class="bl f1"></div><div class="bl f2"></div><div class="bl f3"></div><div style="position: absolute; inset: 0; border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.85), inset 0 0 0 1px rgba(255,255,255,.55), inset 0 -8px 16px rgba(120,100,200,.08)"></div></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; background: linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55)); pointer-events: none; width: {{trailW}}px; transition: {{trailTrans}}"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; border-radius: 999px; overflow: hidden; pointer-events: none">
+<div class="swipe" style="position: absolute; inset: 0; border-radius: 999px; background: linear-gradient(100deg, #3F3FD8 0%, #6A4FF0 32%, #B05BEA 62%, #F0709E 84%, #FF8A5C 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -8px 16px rgba(40,20,120,.18); clip-path: {{swClip}}; transition: {{swTrans}}"></div>
+<div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-right: 56px"><span class="{{wmCls}}" style="opacity: {{wmOp}}; transform: {{wmTf}}; filter: {{wmFilter}}; transition: {{wmTrans}}">Overlöd</span></div>
+</div>
+<div class="btnMono" aria-hidden="true" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #2A2560; font-size: 14px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; pointer-events: none; opacity: {{lblOp}}; padding-left: {{lblPL}}px; padding-right: {{lblPR}}px">{{lbl}}</div>
+<button role="slider" aria-label="Slide to finish workout" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{kPct}}" onPointerDown="{{kDown}}" onPointerMove="{{kMove}}" onPointerUp="{{kUp}}" onPointerCancel="{{kUp}}" onClick="{{kClick}}" onKeyDown="{{kKey}}" style="position: absolute; left: 6px; top: 6px; width: 52px; height: 52px; border-radius: 50%; touch-action: none; cursor: grab; transform: translateX({{kx}}px); transition: {{kTrans}}">
+<span style="width: 100%; height: 100%; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #5B5CF6; box-shadow: 0 4px 14px rgba(90,70,170,.22), 0 1px 2px rgba(90,70,170,.12); transition: transform .1s ease-out; transform: scale({{kScale}})">
+<span style="position: relative; width: 24px; height: 24px; display: block">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; inset: 0; opacity: {{arrOp}}; transform: scale({{arrSc}}); filter: blur({{arrBl}}px); transition: opacity .2s ease, transform .2s cubic-bezier(0.23,1,0.32,1), filter .2s ease"><path d="M5 12l14 0M13 18l6 -6M13 6l6 6"></path></svg>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: absolute; inset: 0; opacity: {{chkOp}}; transform: scale({{chkSc}}); filter: blur({{chkBl}}px); transition: opacity .2s ease, transform .2s cubic-bezier(0.23,1,0.32,1), filter .2s ease"><path d="M5 12l5 5l10 -10"></path></svg>
+</span>
+</span>
+</button>
+</div>
+</div>
+</sc-if>
+<div style="height: 24px" aria-hidden="true"></div>
+
+</div>
+
+<nav aria-label="Main" style="flex: none; position: relative; z-index: 2; display: flex; align-items: flex-end; background: rgba(255,255,255,.82); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-top: 1px solid #E6E6EE; padding: 8px 4px 26px; user-select: none">
+<sc-for list="{{nav.left}}" as="t" hint-placeholder-count="2">
+<sc-if value="{{t.isLink}}" hint-placeholder-val="{{true}}"><a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; text-decoration: none; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a></sc-if>
+<sc-if value="{{t.isBtn}}" hint-placeholder-val="{{false}}"><button onClick="{{t.tap}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</button></sc-if>
+</sc-for>
+<a href="Main.dc.html" aria-label="Train" aria-current="{{nav.log.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; text-decoration: none; border-radius: 12px; color: {{nav.log.color}}; font-weight: {{nav.log.weight}}">
+<span style="height: 28px; display: flex; align-items: center; justify-content: center"><span class="{{nav.log.cls}}" style="font-size: 23px; line-height: 38px; margin: -5px 0">Ö</span></span>
+Train</a>
+<sc-for list="{{nav.right}}" as="t" hint-placeholder-count="2">
+<sc-if value="{{t.isLink}}" hint-placeholder-val="{{false}}"><a href="{{t.href}}" aria-current="{{t.cur}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; text-decoration: none; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</a></sc-if>
+<sc-if value="{{t.isBtn}}" hint-placeholder-val="{{true}}"><button onClick="{{t.tap}}" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; border-radius: 12px; color: {{t.color}}; font-weight: {{t.weight}}"><span style="height: 28px; display: flex; align-items: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g opacity="{{t.offOp}}"><path d="{{t.o}}" stroke="currentColor" stroke-width="2"></path></g><g opacity="{{t.onOp}}"><path d="{{t.f}}" fill="currentColor" stroke="currentColor" stroke-width="2"></path><path d="{{t.s}}" stroke="currentColor" stroke-width="2"></path><path d="{{t.k}}" stroke="#FFFFFF" stroke-width="2"></path></g></svg></span>{{t.label}}</button></sc-if>
+</sc-for>
+</nav>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}">
+<div role="status" aria-live="polite" style="position: absolute; left: 50%; top: 56px; z-index: 7; display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.9); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%); border: 1px solid rgba(255,255,255,.7); font-size: 13px; font-weight: 700; padding: 8px 16px; border-radius: 999px; white-space: nowrap; box-shadow: 0 8px 24px rgba(20,20,60,.16); transform: translate(-50%,0); animation: tin .32s cubic-bezier(.2,.9,.25,1)">
+<span>{{toastMsg}}</span>
+<sc-if value="{{hasUndo}}" hint-placeholder-val="{{false}}"><button onClick="{{undo}}" style="font-size: 13px; font-weight: 700; color: #4142D9; background: #EEEEFF; padding: 5px 12px; border-radius: 999px; margin-right: -8px">Undo</button></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{sheetOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 6">
+<button aria-label="Close sheet" onClick="{{closeSheet}}" style="position: absolute; inset: 0; width: 100%; height: 100%; background: rgba(20,20,40,.36); animation: fadein .3s ease-out"></button>
+<div role="dialog" aria-modal="true" aria-label="{{sheetLabel}}" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 26px 26px 0 0; padding: 10px 16px 26px; box-shadow: 0 -10px 30px rgba(0,0,0,.1); animation: sheetin .38s cubic-bezier(.2,.9,.25,1)">
+<div style="width: 36px; height: 5px; border-radius: 3px; background: #DADAE2; margin: 0 auto 12px"></div>
+<sc-if value="{{isOpts}}" hint-placeholder-val="{{false}}">
+<div style="padding: 2px 6px 6px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A9C; font-weight: 700">{{sheetExName}}</div>
+<button onClick="{{optCollapse}}" style="display: block; width: 100%; text-align: left; padding: 13px 6px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; border-bottom: 1px solid #F0F0F4; border-radius: 10px">{{collapseLabel}}</button>
+<button onClick="{{optRemove}}" style="display: block; width: 100%; text-align: left; padding: 13px 6px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; border-bottom: 1px solid #F0F0F4; border-radius: 10px; color: #C8362E">Remove exercise</button>
+<button onClick="{{closeSheet}}" style="display: block; width: 100%; text-align: left; padding: 13px 6px; font-size: 16px; font-weight: 700; letter-spacing: -0.01em; border-radius: 10px; color: #8A8A9C">Cancel</button>
+</sc-if>
+<sc-if value="{{isTpl}}" hint-placeholder-val="{{false}}">
+<div style="font-size: 21px; font-weight: 700; letter-spacing: -0.015em; padding: 2px 4px 2px">Load template</div>
+<div style="font-size: 13px; font-weight: 500; color: #8A8A9C; padding: 0 4px 10px">Adds the lifts to {{tplDay}}. You can still add or remove exercises.</div>
+<sc-for list="{{tpls}}" as="t" hint-placeholder-count="3">
+<button class="tplRow" onClick="{{t.pick}}">
+<span style="width: 40px; height: 40px; flex: none; border-radius: 12px; background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', ui-monospace, monospace; font-size: 14px; font-weight: 700; color: #2A2560">{{t.count}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 16px; font-weight: 700; letter-spacing: -0.01em">{{t.name}}</span><span style="display: block; font-size: 13px; font-weight: 500; color: #8A8A9C; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{t.lifts}}</span></span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B4B4C6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6l-6 6"></path></svg>
+</button>
+</sc-for>
+<a href="Templates.dc.html" class="press" style="display: block; text-align: center; margin-top: 8px; padding: 12px; font-size: 14px; font-weight: 600; color: #4142D9; border-radius: 12px">Manage templates</a>
+</sc-if>
+<sc-if value="{{isAdd}}" hint-placeholder-val="{{false}}">
+<div style="font-size: 21px; font-weight: 700; letter-spacing: -0.015em; padding: 2px 4px 12px">Add exercise</div>
+<label style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1.5px solid #E6E6EE; border-radius: 18px; padding: 0 14px; height: 52px; cursor: text">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A4A4B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0M21 21l-6 -6"></path></svg>
+<input type="text" value="{{addName}}" onChange="{{onAddName}}" onKeyDown="{{keyAdd}}" placeholder="Exercise name" aria-label="Exercise name" maxlength="40" autocomplete="off" style="font-size: 18px; font-weight: 700; letter-spacing: -0.015em; height: 24px; line-height: 24px">
+</label>
+<sc-if value="{{addErr}}" hint-placeholder-val="{{false}}"><div style="font-size: 13px; color: #C8362E; margin: 8px 4px 0">Enter an exercise name first</div></sc-if>
+<div style="margin: 16px 4px 8px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #8A8A9C; font-weight: 700">Recent</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{sug}}" as="s" hint-placeholder-count="6">
+<button class="press" onClick="{{s.pick}}" style="font-size: 14px; font-weight: 700; letter-spacing: -0.01em; padding: 8px 13px; border-radius: 999px; background: #F2F1FA; color: #4A4A70">{{s.name}}</button>
+</sc-for>
+</div>
+<button class="press btnMono" onClick="{{addGo}}" style="margin-top: 18px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 22px; border-radius: 999px; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #2A2560; background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); box-shadow: 0 6px 18px rgba(130,110,220,.18), inset 0 1px 0 rgba(255,255,255,.8)">Add to workout</button>
+</sc-if>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":375,"height":1100}}'>
+function nbRR(x, y, w, h, r) {
+  return 'M' + (x + r) + ' ' + y + 'h' + (w - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + r + 'v' + (h - 2 * r) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + r + 'h' + (-(w - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + (-r) + ' ' + (-r) + 'v' + (-(h - 2 * r)) + 'a' + r + ' ' + r + ' 0 0 1 ' + r + ' ' + (-r) + 'z';
+}
+function nbC(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+function nbNav(active, style, tap) {
+  var none = 'M0 0';
+  var bars = nbRR(4, 12, 4, 8, 1) + nbRR(10, 4, 4, 16, 1) + nbRR(16, 8, 4, 12, 1);
+  var arrow = 'M7.5 14.5l3 -3l2 2l4 -4.5M13.5 9h3v3';
+  var dumb = nbRR(3.5, 9.5, 2.5, 5, 1) + nbRR(6, 7, 3, 10, 1.2) + nbRR(15, 7, 3, 10, 1.2) + nbRR(18, 9.5, 2.5, 5, 1);
+  var gear = 'M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z';
+  var defs = [
+    {id: 'stats', label: 'Stats', href: 'Stats.dc.html', o: bars, f: bars},
+    {id: 'progress', label: 'Progress', href: 'Achievements.dc.html', o: nbC(12, 12, 9) + arrow, f: nbC(12, 12, 9), k: arrow},
+    {id: 'exercises', label: 'Sessions', href: 'Templates.dc.html', o: nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5) + 'M13 5h8M13 9h5M13 15h8M13 19h5', f: nbRR(3, 4, 6, 6, 1.5) + nbRR(3, 14, 6, 6, 1.5), s: 'M13 5h8M13 9h5M13 15h8M13 19h5'},
+    {id: 'settings', label: 'Settings', o: 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0' + nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2), f: nbC(14, 6, 2) + nbC(8, 12, 2) + nbC(17, 18, 2), s: 'M4 6l8 0M16 6l4 0M4 12l2 0M10 12l10 0M4 18l11 0M19 18l1 0'}
+  ];
+  var mk = function (d) {
+    var on = d.id === active;
+    return {label: d.label, href: d.href || '', isLink: !!d.href, isBtn: !d.href, cur: on ? 'page' : 'false',
+      o: d.o, f: d.f || none, s: d.s || none, k: d.k || none, onOp: on ? 1 : 0, offOp: on ? 0 : 1,
+      color: on ? '#17171F' : '#A4A4B6', weight: on ? 700 : 500, tap: function () { if (tap) tap(d.label); }};
+  };
+  var lon = active === 'log';
+  return {
+    left: [mk(defs[1]), mk(defs[0])], right: [mk(defs[2]), mk(defs[3])],
+    isGlyph: style === 'glyph', isPill: style === 'pill', isRaised: style === 'raised',
+    log: {cur: lon ? 'page' : 'false', cls: lon ? 'oG on' : 'oG', color: lon ? '#2A2560' : '#A4A4B6', weight: lon ? 700 : 500,
+      glyphStyle: lon ? 'filter: drop-shadow(0 6px 10px rgba(91,92,246,.35))' : 'filter: drop-shadow(0 2px 4px rgba(255,255,255,.9))',
+      pillStyle: lon ? 'background: linear-gradient(110deg,#E6DFFF 0%,#F3E4F4 55%,#FCE9DF 100%); box-shadow: 0 4px 12px rgba(130,110,220,.22), inset 0 1px 0 rgba(255,255,255,.8)' : 'background: transparent; box-shadow: none',
+      raisedStyle: lon ? 'background: radial-gradient(60% 60% at 25% 30%, rgba(170,160,255,.9), transparent 70%), radial-gradient(60% 60% at 80% 20%, rgba(255,200,170,.85), transparent 70%), radial-gradient(60% 60% at 85% 90%, rgba(170,235,215,.8), transparent 70%), radial-gradient(60% 60% at 35% 95%, rgba(255,180,220,.7), transparent 70%), #EEE8FF; box-shadow: 0 6px 18px rgba(120,100,240,.3), inset 0 1px 0 rgba(255,255,255,.8)' : 'background: #FFFFFF; border: 1px solid #E6E6EE; box-shadow: 0 4px 14px rgba(30,30,80,.1)'}
+  };
+}
+var OV_PH = ['Warm-up', 'Working', 'Backoff'];
+var OV_P = {
+  'Warm-up': {dot: '#F08A5D', bar: 'linear-gradient(110deg,#FFEBDF 0%,#FCE6EC 100%)', ink: '#A24B22', gl: 'rgba(240,138,93,.14)'},
+  'Working': {dot: '#5B5CF6', bar: 'linear-gradient(110deg,#E7E2FF 0%,#EFE4FA 100%)', ink: '#3F3FC4', gl: 'rgba(110,100,230,.14)'},
+  'Backoff': {dot: '#1FA27A', bar: 'linear-gradient(110deg,#DFF4EC 0%,#E6EFFB 100%)', ink: '#16704F', gl: 'rgba(31,162,122,.12)'}
+};
+var OV_PREV = {
+  'Incline dumbbell press': {'Warm-up': [[15,12],[20,6]], 'Working': [[30,10],[32.5,8],[32.5,7]], 'Backoff': [[22.5,12]]},
+  'Cable fly': {'Warm-up': [[10,12]], 'Working': [[15,12],[15,12],[15,10]], 'Backoff': []},
+  'Lat pulldown': {'Warm-up': [[40,12]], 'Working': [[57.5,10],[57.5,9],[57.5,8]], 'Backoff': [[42.5,14]]},
+  'Back squat': {'Warm-up': [[60,8],[80,4]], 'Working': [[90,6],[90,6]], 'Backoff': [[70,9]]}
+};
+var OV_D = [['Sun',4],['Mon',5],['Tue',6],['Wed',7],['Thu',8],['Fri',9],['Sat',10]];
+var OV_SUG = ['Overhead press','Lateral raise','Tricep pushdown','Dips','Chest press machine','Skull crusher'];
+var OV_M = 283;
+var OV_TPL = [
+  {name: 'Push day', lifts: ['Incline dumbbell press', 'Overhead press', 'Cable fly', 'Lateral raise', 'Tricep pushdown']},
+  {name: 'Pull day', lifts: ['Lat pulldown', 'Seated cable row', 'Bicep curl']},
+  {name: 'Legs', lifts: ['Back squat', 'Romanian deadlift', 'Leg press', 'Calf raise']}
+];
+function ovMkEx(n, w, k, b, tab) { return {n: n, cl: false, tab: tab || 'Working', s: {'Warm-up': w || [], 'Working': k || [], 'Backoff': b || []}}; }
+function ovFmt(n) { return (+n).toString(); }
+function ovFm(s) { return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); }
+function ovLogged(ss) { return ss.filter(function (r) { return r[0] != null; }); }
+function ovBuzz(ms) { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} }
+function ovProject(v) { return (v / 1000) * 0.99 / (1 - 0.99); }
+function ovRubber(o, dim) { return (o * dim * 0.55) / (dim + 0.55 * Math.abs(o)); }
+function ovPrevSet(e, p, i) { var pp = OV_PREV[e.n]; return (pp && pp[p] && pp[p][i]) || null; }
+function ovSuggest(e, p, i) { for (var k = i - 1; k >= 0; k--) { var r = e.s[p][k]; if (r[0] != null) return r; } return ovPrevSet(e, p, i); }
+function ovCmp(r, pv) {
+  if (!pv) return {t: 'New', c: '#C4C4D2'};
+  var dw = Math.round((r[0] - pv[0]) * 100) / 100, dr = r[1] - pv[1];
+  if (dw) return {t: (dw > 0 ? '+' : '−') + ovFmt(Math.abs(dw)) + ' kg', c: '#A0A0B2'};
+  if (dr) return {t: (dr > 0 ? '+' : '−') + Math.abs(dr) + ' ' + (Math.abs(dr) === 1 ? 'rep' : 'reps'), c: '#A0A0B2'};
+  return {t: 'Same', c: '#A0A0B2'};
+}
+function ovInit() {
+  return {
+    cur: 9,
+    days: {
+      5: {t: 'Pull day', ex: [ovMkEx('Lat pulldown', [[40,12]], [[60,10],[60,9],[60,8]], [[45,14]])]},
+      7: {t: 'Legs', ex: [ovMkEx('Back squat', [[60,8],[80,4]], [[92.5,6],[92.5,6]], [[70,10]])]},
+      9: {t: 'Push day', ex: [ovMkEx('Incline dumbbell press', [[15,12],[22.5,6]], [[32.5,9],[32.5,8]], []), ovMkEx('Cable fly', [], [], [], 'Warm-up')]}
+    },
+    edit: null, ew: '', er: '', errW: false, errR: false,
+    rest: 0, restEx: null, done: false, toast: null,
+    sheet: null, sheetEx: null, addName: '', addErr: false,
+    kx: 0, drag: null, skipClick: false, pressed: false
+  };
+}
+
+class Component extends DCLogic {
+  componentDidMount() {
+    var self = this;
+    this.iv = setInterval(function () {
+      var m = self.m;
+      if (!m || m.done || m.rest <= 0) return;
+      m.rest--;
+      if (m.rest <= 0) { m.restEx = null; ovBuzz([20, 60, 20]); self.toast('Rest over · ready for your next set'); }
+      self.forceUpdate();
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.iv); clearTimeout(this.tt); this.stopSpring(); }
+  stopSpring() { if (this.raf) cancelAnimationFrame(this.raf); this.raf = null; }
+  spring(to, v, damping) {
+    var self = this, m = this.m;
+    this.stopSpring();
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (reduce) { m.kx = to; this.forceUpdate(); return; }
+    var k = Math.pow(2 * Math.PI / 0.35, 2), c = 2 * damping * Math.sqrt(k), x = m.kx, vel = v || 0, last = performance.now();
+    var step = function (t) {
+      var dt = Math.min(0.064, (t - last) / 1000); last = t;
+      var n = Math.max(1, Math.ceil(dt / 0.004)), hh = dt / n;
+      for (var i = 0; i < n; i++) { vel += (-k * (x - to) - c * vel) * hh; x += vel * hh; }
+      if (Math.abs(vel) < 4 && Math.abs(x - to) < 0.25) { m.kx = to; self.raf = null; self.forceUpdate(); return; }
+      m.kx = x; self.forceUpdate(); self.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+  toast(msg, undo) {
+    var self = this, m = this.m;
+    m.toast = {msg: msg, undo: undo || null};
+    clearTimeout(this.tt);
+    this.tt = setTimeout(function () { m.toast = null; self.forceUpdate(); }, undo ? 4000 : 2000);
+  }
+  day() { var m = this.m; return m.days[m.cur] || (m.days[m.cur] = {t: '', ex: []}); }
+  commit(silent) {
+    var m = this.m;
+    if (!m.edit) return true;
+    var e = m.edit.ex, p = m.edit.p, i = m.edit.i, ss = e.s[p], r = ss[i];
+    if (!r) { m.edit = null; return true; }
+    var sg = ovSuggest(e, p, i);
+    var w = m.ew.trim() !== '' ? parseFloat(m.ew.replace(',', '.')) : null;
+    var n = m.er.trim() !== '' ? parseInt(m.er, 10) : null;
+    if (silent && w == null && n == null && r[0] == null) { ss.splice(i, 1); m.edit = null; return true; }
+    if (w == null && sg) w = sg[0];
+    if (n == null && sg) n = sg[1];
+    var okW = w != null && isFinite(w) && w >= 0, okN = n != null && isFinite(n) && n > 0;
+    if (!okW || !okN) {
+      if (silent) { if (r[0] == null) ss.splice(i, 1); m.edit = null; return true; }
+      m.errW = !okW; m.errR = !okN; ovBuzz([8, 30, 8]); return false;
+    }
+    var wasNew = r[0] == null;
+    r[0] = Math.round(w * 100) / 100; r[1] = n; m.edit = null; m.errW = false; m.errR = false;
+    if (!silent) {
+      ovBuzz(10);
+      if (wasNew) {
+        m.rest = 120; m.restEx = e;
+        var d = ovCmp(r, ovPrevSet(e, p, i)).t;
+        this.toast('Set logged · ' + ovFmt(r[0]) + ' kg × ' + n + (d && d !== 'New' ? ' · ' + d : ''), function () { var k = ss.indexOf(r); if (k > -1) ss.splice(k, 1); m.rest = 0; m.restEx = null; });
+      } else this.toast('Set updated');
+    }
+    return true;
+  }
+  startEdit(e, p, i) {
+    var m = this.m, r = e.s[p][i];
+    m.edit = {ex: e, p: p, i: i}; m.errW = false; m.errR = false;
+    m.ew = r[0] != null ? ovFmt(r[0]) : ''; m.er = r[1] != null ? String(r[1]) : '';
+  }
+  finish() {
+    var m = this.m;
+    this.commit(true); m.rest = 0; m.restEx = null; m.done = true;
+    ovBuzz([12, 40, 18]); this.toast((this.day().t || 'Workout') + ' saved');
+  }
+  unfinish() { this.m.done = false; ovBuzz(8); }
+  renderVals() {
+    var self = this;
+    var m = this.m || (this.m = ovInit());
+    var up = function () { self.forceUpdate(); };
+    var dd = this.day();
+
+    var week = OV_D.map(function (d) {
+      var ddd = m.days[d[1]];
+      var tr = !!(ddd && ddd.ex.some(function (e) { return OV_PH.some(function (p) { return ovLogged(e.s[p]).length; }); }));
+      var sel = d[1] === m.cur;
+      return {
+        name: d[0], num: d[1], tr: tr, selStr: String(sel),
+        aria: d[0] + ' ' + d[1] + ' October' + (tr ? ', trained' : ''),
+        btnStyle: 'background: transparent; color: #8C88A8; font-weight: 600',
+        dnStyle: tr ? 'background: rgba(255,255,255,.6); border-color: transparent; color: #17171F' : 'background: transparent; border-color: rgba(140,130,190,.25); color: #A6A2C2',
+        pick: function () { self.commit(true); m.cur = d[1]; m.rest = 0; m.restEx = null; m.edit = null; up(); }
+      };
+    });
+
+    var exs = dd.ex.map(function (e) {
+      var tot = OV_PH.reduce(function (a, p) { return a + ovLogged(e.s[p]).length; }, 0);
+      var p = e.tab, c = OV_P[p], ss = e.s[p];
+      var pv = OV_PREV[e.n] && OV_PREV[e.n][p];
+      var rows = ss.map(function (r, ri) {
+        var isE = !!(m.edit && m.edit.ex === e && m.edit.p === p && m.edit.i === ri);
+        var label = 'Set ' + (ri + 1);
+        if (isE) {
+          var sg = ovSuggest(e, p, ri);
+          return {isEdit: true, notEdit: false, label: label, phW: sg ? ovFmt(sg[0]) : '0', phR: sg ? String(sg[1]) : '0',
+            saveStyle: 'background: ' + c.bar + '; color: ' + c.ink + '; box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 3px 10px ' + c.gl};
+        }
+        var d = ovCmp(r, ovPrevSet(e, p, ri));
+        return {isEdit: false, notEdit: true, label: label, w: ovFmt(r[0]), reps: r[1], note: d.t, noteColor: d.c,
+          aria: label + ', ' + ovFmt(r[0]) + ' kilograms, ' + r[1] + ' reps, ' + d.t + ' versus last session. Tap to edit.',
+          open: function () { self.commit(true); self.startEdit(e, p, ri); up(); }};
+      });
+      return {
+        name: e.n, open: !e.cl, expStr: String(!e.cl), chev: e.cl ? 'rotate(-90deg)' : 'none',
+        ti: OV_PH.indexOf(p), tig: 4 * OV_PH.indexOf(p), tr: 2 - OV_PH.indexOf(p), trg: 4 * (2 - OV_PH.indexOf(p)),
+        setsLabel: tot + (tot === 1 ? ' set' : ' sets'),
+        resting: m.restEx === e && m.rest > 0,
+        toggle: function () { e.cl = !e.cl; up(); },
+        opts: function () { self.commit(true); m.sheet = 'opts'; m.sheetEx = e; up(); },
+        tabs: OV_PH.map(function (q) {
+          var on = q === p;
+          return {label: q, dot: OV_P[q].dot, count: ovLogged(e.s[q]).length, selStr: String(on),
+            style: on ? 'background: #FFFFFF; color: #17171F; box-shadow: 0 2px 8px rgba(30,30,80,.08)' : 'background: transparent; color: #6E6E86; box-shadow: none',
+            pick: function () { if (e.tab === q) return; self.commit(true); e.tab = q; ovBuzz(5); up(); }};
+        }),
+        empty: !ss.length,
+        emptyText: 'No ' + p.toLowerCase() + ' sets yet.',
+        hasLast: !!(pv && pv.length),
+        lastText: pv ? pv.map(function (r) { return ovFmt(r[0]) + ' × ' + r[1]; }).join(', ') : '',
+        rows: rows,
+        addLabel: 'Add ' + p.toLowerCase() + ' set',
+        addAria: 'Add ' + p.toLowerCase() + ' set to ' + e.n,
+        addStyle: 'background: ' + c.bar + '; color: ' + c.ink + '; box-shadow: inset 0 1px 0 rgba(255,255,255,.75), inset 0 0 0 1px rgba(255,255,255,.4), 0 4px 12px ' + c.gl,
+        add: function () { self.commit(true); e.s[p].push([null, null]); self.startEdit(e, p, e.s[p].length - 1); up(); }
+      };
+    });
+
+    var fld = function (err) { return err ? 'background: #FFF0F0; box-shadow: inset 0 0 0 1.5px #E5484D' : 'background: #FFFFFF; box-shadow: none'; };
+    var prog = Math.max(0, Math.min(1, m.kx / OV_M));
+    var dragging = !!m.drag;
+    var springT = m.done ? '.5s cubic-bezier(.34,1.4,.5,1)' : '.4s cubic-bezier(.2,.9,.25,1)';
+    var addFn = function (n) {
+      n = (n || '').trim();
+      if (!n) { m.addErr = true; up(); return; }
+      var e = ovMkEx(n, [], [], [], 'Warm-up'), list = self.day().ex;
+      list.push(e); m.sheet = null; ovBuzz(10);
+      self.toast(n + ' added', function () { var i = list.indexOf(e); if (i > -1) list.splice(i, 1); });
+      up();
+    };
+
+    return {
+      rootCls: m.done ? 'paused' : '',
+      wkX: OV_D.map(function (d) { return d[1]; }).indexOf(m.cur) * 100,
+      wkL: (OV_D.map(function (d) { return d[1]; }).indexOf(m.cur) * 100 / 7).toFixed(3),
+      wkR: ((6 - OV_D.map(function (d) { return d[1]; }).indexOf(m.cur)) * 100 / 7).toFixed(3),
+      nav: nbNav('log', this.props.trainTab ?? 'glyph', function (label) { self.toast(label + ' not designed yet'); up(); }),      week: week,
+      title: dd.t,
+      setTitle: function (ev) { self.day().t = ev.target.value; up(); },
+      exs: exs,
+      noEx: !dd.ex.length,
+      hasEx: !!dd.ex.length,
+      canFinish: m.done || dd.ex.some(function (e) { return ['Warm-up', 'Working', 'Backoff'].some(function (p) { return ovLogged(e.s[p]).length > 0; }); }),
+      restText: 'Rest ' + ovFm(m.rest),
+      skipRest: function () { m.rest = 0; m.restEx = null; self.toast('Rest skipped'); up(); },
+      ew: m.ew, er: m.er, wFld: fld(m.errW), rFld: fld(m.errR),
+      onW: function (ev) { m.ew = ev.target.value; m.errW = false; up(); },
+      onR: function (ev) { m.er = ev.target.value; m.errR = false; up(); },
+      keyW: function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); var row = ev.target.closest('div'); var ins = row ? row.querySelectorAll('input') : []; if (ins[1]) ins[1].focus(); } },
+      keyR: function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); self.commit(false); up(); } },
+      save: function () { self.commit(false); up(); },
+      delSet: function () {
+        if (!m.edit) return;
+        var ss = m.edit.ex.s[m.edit.p], idx = m.edit.i, r = ss[idx], wasNew = r[0] == null;
+        ss.splice(idx, 1); m.edit = null;
+        if (!wasNew) self.toast('Set deleted', function () { ss.splice(idx, 0, r); });
+        up();
+      },
+      trailW: Math.max(0, m.kx + 64),
+      trailTrans: 'none',
+      kx: m.kx,
+      kTrans: 'none',
+      kScale: m.pressed ? 0.96 : 1,
+      swClip: m.done ? 'inset(0 0 0 0 round 999px)' : 'inset(0 100% 0 0 round 999px)',
+      swTrans: m.done ? 'clip-path .55s cubic-bezier(0.77,0,0.175,1)' : 'clip-path .2s cubic-bezier(0.23,1,0.32,1)',
+      wmCls: m.done ? 'wmDone glint' : 'wmDone',
+      wmOp: m.done ? 1 : 0,
+      wmTf: m.done ? 'translateX(0) skewX(-4deg) scaleX(1.06)' : 'translateX(-6%) skewX(-4deg) scaleX(1.06)',
+      wmFilter: m.done ? 'blur(0px) drop-shadow(0 2px 8px rgba(40,20,120,.35))' : 'blur(2px) drop-shadow(0 2px 8px rgba(40,20,120,0))',
+      wmTrans: m.done ? 'opacity .4s cubic-bezier(0.23,1,0.32,1) .3s, transform .4s cubic-bezier(0.23,1,0.32,1) .3s, filter .4s cubic-bezier(0.23,1,0.32,1) .3s' : 'opacity .12s ease, transform .12s ease, filter .12s ease',
+      arrOp: m.done ? 0 : 1, arrSc: m.done ? 0.6 : 1, arrBl: m.done ? 2 : 0,
+      chkOp: m.done ? 1 : 0, chkSc: m.done ? 1 : 0.6, chkBl: m.done ? 0 : 2,
+      kPct: Math.round(prog * 100),
+      lbl: m.done ? 'Workout saved' : 'Slide to finish',
+      lblOp: m.done ? 0 : Math.max(0, 1 - prog * 1.6),
+      lblPL: m.done ? 0 : 40, lblPR: m.done ? 56 : 0,
+      done: m.done, notDone: !m.done,
+      kDown: function (ev) {
+        self.stopSpring();
+        var b = ev.currentTarget, sc = (b.getBoundingClientRect().width / 52) || 1;
+        m.drag = {x0: ev.clientX, k0: m.kx, sc: sc, moved: 0, hist: [{x: m.kx, t: ev.timeStamp}]}; m.pressed = true;
+        try { b.setPointerCapture(ev.pointerId); } catch (er) {}
+        up();
+      },
+      kMove: function (ev) {
+        if (!m.drag) return;
+        var dx = (ev.clientX - m.drag.x0) / m.drag.sc;
+        m.drag.moved = Math.max(m.drag.moved, Math.abs(dx));
+        var raw = m.drag.k0 + dx;
+        m.kx = raw < 0 ? -ovRubber(-raw, OV_M) : raw > OV_M ? OV_M + ovRubber(raw - OV_M, OV_M) : raw;
+        var h = m.drag.hist; h.push({x: m.kx, t: ev.timeStamp});
+        while (h.length > 2 && ev.timeStamp - h[0].t > 100) h.shift();
+        up();
+      },
+      kUp: function () {
+        if (!m.drag) return;
+        var d = m.drag, h = d.hist; m.drag = null; m.pressed = false;
+        if (d.moved < 4) { self.spring(m.done ? OV_M : 0, 0, 1); return; }
+        m.skipClick = true;
+        var a = h[0], b = h[h.length - 1], dt = b.t - a.t;
+        var v = dt > 0 ? (b.x - a.x) / dt * 1000 : 0;
+        var go = m.kx + ovProject(v) > OV_M * 0.7;
+        if (go && !m.done) self.finish(); else if (!go && m.done) self.unfinish();
+        self.spring(go ? OV_M : 0, v, go && Math.abs(v) > 300 ? 0.8 : 1);
+      },
+      kClick: function () {
+        if (m.skipClick) { m.skipClick = false; return; }
+        if (m.done) { self.unfinish(); self.spring(0, 0, 1); } else { self.finish(); self.spring(OV_M, 0, 1); }
+      },
+      kKey: function (ev) {
+        if (ev.key === 'ArrowRight' && !m.done) { ev.preventDefault(); self.finish(); self.spring(OV_M, 0, 1); }
+        else if (ev.key === 'ArrowLeft' && m.done) { ev.preventDefault(); self.unfinish(); self.spring(0, 0, 1); }
+      },
+      profileTap: function () { self.toast('Profile not designed yet'); up(); },
+      hasToast: !!m.toast,
+      toastMsg: m.toast ? m.toast.msg : '',
+      hasUndo: !!(m.toast && m.toast.undo),
+      undo: function () { if (m.toast && m.toast.undo) { m.toast.undo(); ovBuzz(8); } m.toast = null; up(); },
+      sheetOpen: !!m.sheet,
+      isOpts: m.sheet === 'opts',
+      isAdd: m.sheet === 'add',
+      isTpl: m.sheet === 'tpl',
+      tplDay: 'this session',
+      openTpl: function () { self.commit(true); m.sheet = 'tpl'; up(); },
+      tpls: OV_TPL.map(function (t) {
+        return {name: t.name, count: String(t.lifts.length), lifts: t.lifts.join(' · '),
+          pick: function () {
+            var d = self.day(), prevT = d.t;
+            d.ex = t.lifts.map(function (n, i) { var e = ovMkEx(n, [], [], [], 'Warm-up'); e.cl = i > 0; return e; });
+            d.t = t.name; m.sheet = null; ovBuzz(10);
+            self.toast(t.name + ' loaded', function () { d.ex = []; d.t = prevT; });
+            up();
+          }};
+      }),
+      sheetLabel: m.sheet === 'add' ? 'Add exercise' : m.sheet === 'tpl' ? 'Load template' : (m.sheetEx ? m.sheetEx.n + ' options' : 'Options'),
+      sheetExName: m.sheetEx ? m.sheetEx.n : '',
+      collapseLabel: (m.sheetEx && m.sheetEx.cl ? 'Expand' : 'Collapse') + ' exercise',
+      closeSheet: function () { m.sheet = null; up(); },
+      optCollapse: function () { if (m.sheetEx) m.sheetEx.cl = !m.sheetEx.cl; m.sheet = null; up(); },
+      optRemove: function () {
+        var e = m.sheetEx, list = self.day().ex, i = list.indexOf(e);
+        if (i > -1) list.splice(i, 1);
+        if (m.restEx === e) { m.rest = 0; m.restEx = null; }
+        m.sheet = null;
+        self.toast(e.n + ' removed', function () { list.splice(i, 0, e); });
+        up();
+      },
+      openAdd: function () { self.commit(true); m.sheet = 'add'; m.addName = ''; m.addErr = false; up(); },
+      addName: m.addName,
+      addErr: m.addErr,
+      onAddName: function (ev) { m.addName = ev.target.value; m.addErr = false; up(); },
+      keyAdd: function (ev) { if (ev.key === 'Enter') { ev.preventDefault(); addFn(m.addName); } },
+      addGo: function () { addFn(m.addName); },
+      sug: OV_SUG.map(function (s) { return {name: s, pick: function () { addFn(s); }}; })
+    };
+  }
+}
+</script>
+</body>
+</html>
